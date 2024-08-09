@@ -1,0 +1,426 @@
+{
+  "participants": [
+    {
+      "name": "Đức Bách"
+    },
+    {
+      "name": "Tuấn Dũng"
+    },
+    {
+      "name": "Dương Ng"
+    },
+    {
+      "name": "Đoàn Nhật Linh"
+    },
+    {
+      "name": "Tuấn Dũng"
+    },
+    {
+      "name": "Minh"
+    },
+    {
+      "name": "Phong Hoàng"
+    },
+    {
+      "name": "Phong Lee"
+    },
+    {
+      "name": "Trần Hiệp"
+    },
+    {
+      "name": "Thành Đạt"
+    }
+  ],
+  "messages": [
+    {
+      "sender_name": "Trần Hiệp",
+      "timestamp_ms": 1722332200675,
+      "content": "A check lại nha",
+      "is_geoblocked_for_viewer": false
+    },
+    {
+      "sender_name": "Trần Hiệp",
+      "timestamp_ms": 1722332196649,
+      "content": "https://drive.google.com/file/d/1QOfEE301_XFQQdeTyjaztdhdqHUeYbMw/view?usp=sharing",
+      "reactions": [
+        {
+          "reaction": "👍",
+          "actor": "Thành Đạt"
+        }
+      ],
+      "share": {
+        "link": "https://drive.google.com/file/d/1QOfEE301_XFQQdeTyjaztdhdqHUeYbMw/view?usp=sharing"
+      },
+      "is_geoblocked_for_viewer": false
+    },
+    {
+      "sender_name": "Dương Ng",
+      "timestamp_ms": 1722331743027,
+      "content": "dạaaem hỉu màa",
+      "is_geoblocked_for_viewer": false
+    },
+    {
+      "sender_name": "Thành Đạt",
+      "timestamp_ms": 1722331735721,
+      "content": "sửa xong thì gửi lại để duyệt lại đó",
+      "is_geoblocked_for_viewer": false
+    },
+    {
+      "sender_name": "Thành Đạt",
+      "timestamp_ms": 1722331723890,
+      "content": "sửa thì a vẫn cần nhắn lại nhé e",
+      "is_geoblocked_for_viewer": false
+    },
+    {
+      "sender_name": "Dương Ng",
+      "timestamp_ms": 1722331630473,
+      "content": "hic e che mà :(",
+      "is_geoblocked_for_viewer": false
+    },
+    {
+      "sender_name": "Thành Đạt",
+      "timestamp_ms": 1722331609350,
+      "content": "đoạn này sửa nhé \nông Dương đẩy mông là hành vi gợi dục đó",
+      "is_geoblocked_for_viewer": false
+    },
+    {
+      "sender_name": "Thành Đạt",
+      "timestamp_ms": 1722331565392,
+      "photos": [
+        {
+          "uri": "your_facebook_activity/messages/inbox/chottiktokhanhtinhbeatz_25906175132361080/photos/452059533_1654130298775084_4773587376945317351_n_1654130295441751.png",
+          "creation_timestamp": 1722331564
+        }
+      ],
+      "is_geoblocked_for_viewer": false
+    },
+    {
+      "sender_name": "Trần Hiệp",
+      "timestamp_ms": 1722331259945,
+      "content": "A check 2 vid giúp e nha",
+      "is_geoblocked_for_viewer": false
+    },
+    {
+      "sender_name": "Trần Hiệp",
+      "timestamp_ms": 1722331255300,
+      "content": "https://drive.google.com/file/d/1eBxG7Td396i_o-LOKEkYSqgRqqsIL_i5/view",
+      "reactions": [
+        {
+          "reaction": "👍",
+          "actor": "Thành Đạt"
+        }
+      ],
+      "share": {
+        "link": "https://drive.google.com/file/d/1eBxG7Td396i_o-LOKEkYSqgRqqsIL_i5/view"
+      },
+      "is_geoblocked_for_viewer": false
+    },
+    {
+      "sender_name": "Trần Hiệp",
+      "timestamp_ms": 1722331249116,
+      "content": "https://drive.google.com/file/d/1o9Mld3Z00lCNsC9b4RV1tCDAZMusg4rJ/view?usp=sharing",
+      "share": {
+        "link": "https://drive.google.com/file/d/1o9Mld3Z00lCNsC9b4RV1tCDAZMusg4rJ/view?usp=sharing"
+      },
+      "is_geoblocked_for_viewer": false
+    },
+    {
+      "sender_name": "Thành Đạt",
+      "timestamp_ms": 1722254790215,
+      "sticker": {
+        "uri": "your_facebook_activity/messages/stickers_used/39178562_1505197616293642_5411344281094848512_n_369239263222822.png",
+        "ai_stickers": []
+      },
+      "reactions": [
+        {
+          "reaction": "❤",
+          "actor": "Phong Lee"
+        }
+      ],
+      "is_geoblocked_for_viewer": false
+    },
+    {
+      "sender_name": "Phong Lee",
+      "timestamp_ms": 1722254777161,
+      "content": "Ok chưa anh",
+      "is_geoblocked_for_viewer": false
+    },
+    {
+      "sender_name": "Phong Lee",
+      "timestamp_ms": 1722254454635,
+      "content": "Vid gốc trên 1 tháng r ạ",
+      "reactions": [
+        {
+          "reaction": "❤",
+          "actor": "Thành Đạt"
+        }
+      ],
+      "is_geoblocked_for_viewer": false
+    },
+    {
+      "sender_name": "Trần Hiệp",
+      "timestamp_ms": 1722254454624,
+      "content": "video cover đây a",
+      "is_geoblocked_for_viewer": false
+    },
+    {
+      "sender_name": "Trần Hiệp",
+      "timestamp_ms": 1722254449123,
+      "content": "https://www.tiktok.com/@tuankiet.2000/video/7392545038342966546?_t=8oQIx8N9wgK&_r=1",
+      "share": {
+        "link": "https://www.tiktok.com/@tuankiet.2000/video/7392545038342966546?_t=8oQIx8N9wgK&_r=1",
+        "share_text": "628.1K lượt thích, 14.5K bình luận. “Trả lời @Ng Dang phân cảnh My Sói bắt ghen phiên bản dancer 😆”"
+      },
+      "is_geoblocked_for_viewer": false
+    },
+    {
+      "sender_name": "Phong Lee",
+      "timestamp_ms": 1722254439182,
+      "content": "Sắp hết giờ đẹp r",
+      "is_geoblocked_for_viewer": false
+    },
+    {
+      "sender_name": "Phong Lee",
+      "timestamp_ms": 1722254430428,
+      "content": "Tại bọn em chỉ cover thôi",
+      "reactions": [
+        {
+          "reaction": "❤",
+          "actor": "Thành Đạt"
+        }
+      ],
+      "is_geoblocked_for_viewer": false
+    },
+    {
+      "sender_name": "Phong Lee",
+      "timestamp_ms": 1722254425081,
+      "content": "Nhanh nhó",
+      "is_geoblocked_for_viewer": false
+    },
+    {
+      "sender_name": "Phong Lee",
+      "timestamp_ms": 1722254422068,
+      "content": "Anh ơi",
+      "is_geoblocked_for_viewer": false
+    },
+    {
+      "sender_name": "Thành Đạt",
+      "timestamp_ms": 1722254056517,
+      "content": "vid chờ lúc nhé, đang check kỹ lại",
+      "is_geoblocked_for_viewer": false
+    },
+    {
+      "sender_name": "Trần Hiệp",
+      "timestamp_ms": 1722254003214,
+      "content": "@Đức Bách @Thành Đạt vid này nữa anh ơi",
+      "is_geoblocked_for_viewer": false
+    },
+    {
+      "sender_name": "Đoàn Nhật Linh",
+      "timestamp_ms": 1722253352798,
+      "content": "Đây nữa",
+      "is_geoblocked_for_viewer": false
+    },
+    {
+      "sender_name": "Đoàn Nhật Linh",
+      "timestamp_ms": 1722253342844,
+      "content": "Mn ơi check policy giúp c/e nha @Thành Đạt @Tuấn Dũng",
+      "is_geoblocked_for_viewer": false
+    },
+    {
+      "sender_name": "Đoàn Nhật Linh",
+      "timestamp_ms": 1722253139721,
+      "content": "@Dương Ng hnay up nha, rep cmt của fan ở video kia để nối sang video này nhen",
+      "is_geoblocked_for_viewer": false
+    },
+    {
+      "sender_name": "Phong Lee",
+      "timestamp_ms": 1722253120087,
+      "content": "Thêm text các kiểu nữa hen",
+      "reactions": [
+        {
+          "reaction": "❤",
+          "actor": "Trần Hiệp"
+        }
+      ],
+      "is_geoblocked_for_viewer": false
+    },
+    {
+      "sender_name": "Đoàn Nhật Linh",
+      "timestamp_ms": 1722253108196,
+      "content": "Ừaaa \nxem edit tnao cho nối vô tại kiểu để lửng lơ thì người xem cx ko hiểuu",
+      "is_geoblocked_for_viewer": false
+    },
+    {
+      "sender_name": "Trần Hiệp",
+      "timestamp_ms": 1722253068684,
+      "content": "để e pop up cái videeeo hôm qua vào đoạn đầu cho ng xem deex hình dung",
+      "reactions": [
+        {
+          "reaction": "❤",
+          "actor": "Phong Lee"
+        }
+      ],
+      "is_geoblocked_for_viewer": false
+    },
+    {
+      "sender_name": "Đoàn Nhật Linh",
+      "timestamp_ms": 1722253037480,
+      "content": "Thế ko thì thêm text POV gì đó nối vs video hôm qua ý",
+      "is_geoblocked_for_viewer": false
+    },
+    {
+      "sender_name": "Trần Hiệp",
+      "timestamp_ms": 1722252968840,
+      "content": "theo idea của em là để nó tự nhiên nhất, ít cái sound thì lại hay :v",
+      "reactions": [
+        {
+          "reaction": "👍",
+          "actor": "Đoàn Nhật Linh"
+        }
+      ],
+      "is_geoblocked_for_viewer": false
+    },
+    {
+      "sender_name": "Đoàn Nhật Linh",
+      "timestamp_ms": 1722252921491,
+      "content": "Hoặc biên lại theo idea của e cx được, nhưng cho nó fun fun hơn là đc",
+      "is_geoblocked_for_viewer": false
+    },
+    {
+      "sender_name": "Trần Hiệp",
+      "timestamp_ms": 1722252918272,
+      "content": "với cả tập này parody bản phim, nhét sfx vào nhiều ko chắc đã hay đâu chị :v",
+      "is_geoblocked_for_viewer": false
+    },
+    {
+      "sender_name": "Trần Hiệp",
+      "timestamp_ms": 1722252877170,
+      "content": "cái đấy đoạn nào hay hay thì mới nhét chứ từng đoạn mà nhét vào v á chị",
+      "is_geoblocked_for_viewer": false
+    },
+    {
+      "sender_name": "Đoàn Nhật Linh",
+      "timestamp_ms": 1722252844975,
+      "content": "Vào câu nói của từng bạn ý",
+      "reactions": [
+        {
+          "reaction": "😢",
+          "actor": "Trần Hiệp"
+        }
+      ],
+      "is_geoblocked_for_viewer": false
+    },
+    {
+      "sender_name": "Đoàn Nhật Linh",
+      "timestamp_ms": 1722252837676,
+      "content": "thêm icon như này nè Hiệp",
+      "is_geoblocked_for_viewer": false
+    },
+    {
+      "sender_name": "Đoàn Nhật Linh",
+      "timestamp_ms": 1722252830476,
+      "photos": [
+        {
+          "uri": "your_facebook_activity/messages/inbox/chottiktokhanhtinhbeatz_25906175132361080/photos/450741879_1290437088587673_4591560503450856921_n_1290437085254340.jpg",
+          "creation_timestamp": 1722252829
+        }
+      ],
+      "is_geoblocked_for_viewer": false
+    },
+    {
+      "sender_name": "Đoàn Nhật Linh",
+      "timestamp_ms": 1722252809590,
+      "content": "Thêm icon mặt từng người vào cho fun, thỉnh thoảng thêm vài effect",
+      "is_geoblocked_for_viewer": false
+    },
+    {
+      "sender_name": "Đoàn Nhật Linh",
+      "timestamp_ms": 1722252737543,
+      "content": "Thêm sub đi em uii",
+      "reactions": [
+        {
+          "reaction": "❤",
+          "actor": "Trần Hiệp"
+        }
+      ],
+      "is_geoblocked_for_viewer": false
+    },
+    {
+      "sender_name": "Trần Hiệp",
+      "timestamp_ms": 1722252643728,
+      "content": "a check giúp e 2 vid này với",
+      "is_geoblocked_for_viewer": false
+    },
+    {
+      "sender_name": "Trần Hiệp",
+      "timestamp_ms": 1722252636491,
+      "videos": [
+        {
+          "uri": "your_facebook_activity/messages/inbox/chottiktokhanhtinhbeatz_25906175132361080/videos/453180917_8377142195670572_7962340354651403349_n_805726305091472.mp4",
+          "creation_timestamp": 1722252636
+        }
+      ],
+      "reactions": [
+        {
+          "reaction": "👍",
+          "actor": "Thành Đạt"
+        }
+      ],
+      "is_geoblocked_for_viewer": false
+    },
+    {
+      "sender_name": "Trần Hiệp",
+      "timestamp_ms": 1722251336319,
+      "content": "https://drive.google.com/file/d/1Wi4nD8P2n7BiJ4K2YNrw18DxtECyN8e2/view?usp=sharing",
+      "reactions": [
+        {
+          "reaction": "👍",
+          "actor": "Thành Đạt"
+        }
+      ],
+      "share": {
+        "link": "https://drive.google.com/file/d/1Wi4nD8P2n7BiJ4K2YNrw18DxtECyN8e2/view?usp=sharing"
+      },
+      "is_geoblocked_for_viewer": false
+    },
+    {
+      "sender_name": "Đoàn Nhật Linh",
+      "timestamp_ms": 1722169897769,
+      "sticker": {
+        "uri": "your_facebook_activity/messages/stickers_used/434453222_405415399098924_6818168336346036822_n_405415395765591.webp",
+        "ai_stickers": []
+      },
+      "is_geoblocked_for_viewer": false
+    },
+    {
+      "sender_name": "Đoàn Nhật Linh",
+      "timestamp_ms": 1722169893957,
+      "content": "Chủ nhật nhân sự tiktok lại nghỉ ko thèm duyệt",
+      "is_geoblocked_for_viewer": false
+    },
+    {
+      "sender_name": "Đoàn Nhật Linh",
+      "timestamp_ms": 1722169881455,
+      "photos": [
+        {
+          "uri": "your_facebook_activity/messages/inbox/chottiktokhanhtinhbeatz_25906175132361080/photos/452343099_1017859593083256_5150062794740360827_n_1017859589749923.jpg",
+          "creation_timestamp": 1722169880
+        }
+      ],
+      "is_geoblocked_for_viewer": false
+    }
+  ],
+  "title": "Chốt Tiktok HanhtinhbeatZ",
+  "is_still_participant": true,
+  "thread_path": "inbox/chottiktokhanhtinhbeatz_25906175132361080",
+  "magic_words": [],
+  "image": {
+    "uri": "your_facebook_activity/messages/photos/451491303_1041308444169208_4187703059661180414_n_1041308440835875.jpg",
+    "creation_timestamp": 1722495278
+  },
+  "joinable_mode": {
+    "mode": 1,
+    "link": ""
+  }
+}
