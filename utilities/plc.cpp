@@ -2,6 +2,7 @@
 #include <regex>
 #include <array>
 #include <fstream>
+#include <filesystem>
 std::array plc
 {
 	// FB,
@@ -80,14 +81,16 @@ int main(int argc, const char** argv)
 		std::cout << "bad input\n";
 		return -1;
 	};
+
+	std::filesystem::path file {argv[1]};
 	std::ifstream f;
 	f.open(argv[1]);
 	if (!f.is_open()) std::cout << "file doesn't exist\n";
 	
 	std::string line;
-	std::regex plc_rg {"(\\d+)$"};
+	std::regex plc_rg {"(\\d+)\\s*$"};
 	std::ofstream of;
-	of.open("output/plc_converted_" + std::string(argv[1]));
+	of.open("output/plc_converted_" + file.filename().string());
 	while (std::getline(f,line))
 	{
 		std::smatch rm;

@@ -3,6 +3,8 @@
 #include <fstream>
 #include <set>
 #include <map>
+#include <filesystem>
+
 const std::map<std::string, std::string> btv
 {
 	{"Ánh" , "Đào Xuân Ánh"},
@@ -69,43 +71,62 @@ const std::map<std::string, std::string> btv
 	{"Văn A Chúi" , "Hồ Quang Huy"},
 };
 
+std::size_t find_nth(const std::string& str, int n, const std::string& str2)
+{
+	int i = 0;
+	std::size_t pos = -1;
+	while (i < n)
+	{
+		pos = str.find(str2,pos+1);
+		if (pos == std::string::npos) return std::string::npos;
+		else 
+		{
+			i++;
+		};
+	};
+	return pos;
+};
+
 int main(int argc, const char** argv)
 {
 	if (argc != 2) std::cout << "bad argument\n";
+	std::filesystem::path inputfile {argv[1]};
 	std::ifstream f;
 	std::ofstream of;
-	f.open(argv[1]);
+	f.open(inputfile);
 	if (!f.is_open())
 	{
 		std::cout << "file doesn't exist";
 		return -1;
 	};
-	auto file_name = [](const std::string& x)
-	{
-		std::size_t it = x.find_last_of("/");
-		if (it != std::string::npos)
-			return x.substr(it+1);
-		return x;
-	};
-	std::cout << file_name(argv[1]) << '\n';
 	of.open(std::string("./output/renamed_btv_") 
-			+ file_name(argv[1]));
+			+ inputfile.filename().string());
 	if (!of.is_open()) return -1;
 	std::string line;
 	std::set<std::string> not_found_btv;
 	while (std::getline(f,line))
 	{
-		if (btv.find(line) == btv.end())
+		if (find_nth(line, 3, "\t") != std::string::npos)
 		{
+			std::string btv_current {line.begin() + find_nth(line,2,"\t")+1, 
+									line.begin() + find_nth(line,3,"\t")}; 
+			std::cout << btv_current << '\n';
+			bool found = false;
+			for (auto& [k,v] : btv)
+			{
+				if (auto p = line.find(k); p != std::string::npos)
+				{
+					found = true;
+					line.replace(p, k.size(), v);
+					break;
+				};
+			};
+			if (!found) not_found_btv.insert(btv_current);
+
 			of << line << '\n';
-			not_found_btv.insert(line);
-		}
-		else
-		{
-			std::cout << btv.at(line) << '\n';
-			of << btv.at(line) << '\n';
 		};
 	};
+
 	of.close();
 	std::cout << "not found: ";
 	for (auto& s: not_found_btv) std::cout << s << "; ";

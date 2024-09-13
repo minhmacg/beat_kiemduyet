@@ -43,17 +43,20 @@ int main(int argc, const char** argv)
 		std::regex_search(fp,rm_fname,r_fname) ? 
 			page_name = rm_fname.str(1) : page_name = "";
 
+		std::cout << "test\n";
 		std::string output_fmt {"output_tsv/output_" + page_name + ".tsv"};
 		std::filesystem::create_directory("output_tsv");
 		
 		std::cout << output_fmt << '\n';
 
 		messvec rs {vec_from_input(input_data["messages"])};
-		only_reactions(rs,page_name);
+		std::cout << "test\n";
+		only_reactions(rs);
 		join_messages(rs,page_name);
+		std::cout << "test22222\n";
 		for (auto& m: rs)
 		{
-			std::cout << page_map_f(page_name,m) << '\t' 
+			std::cout << page_name << '\t' 
 				<< m->btv << '\t' 
 				<< m->content.substr(0,30) << '\n'
 				<< vec_to_string(media_code(m->photo.links))
