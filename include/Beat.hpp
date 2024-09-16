@@ -10,9 +10,6 @@
 #include <map>
 #include <regex>
 
-template<typename T>
-concept cc = std::integral<T>;
-
 const std::string SS = ", ",
 		  		FS = "\t";
 

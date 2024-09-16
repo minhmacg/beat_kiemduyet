@@ -1,14 +1,14 @@
 [
 {
   "directory": "/home/minhmacg/Documents/beat/build",
-  "command": "/usr/bin/c++  -I/home/minhmacg/Documents/beat/include -g -std=gnu++20 -o CMakeFiles/cpp_beat.dir/src/Beat.cpp.o -c /home/minhmacg/Documents/beat/src/Beat.cpp",
-  "file": "/home/minhmacg/Documents/beat/src/Beat.cpp",
-  "output": "CMakeFiles/cpp_beat.dir/src/Beat.cpp.o"
+  "command": "/usr/bin/c++  -I/home/minhmacg/Documents/beat/include -std=gnu++23 -o CMakeFiles/beatdata.dir/src/main.cpp.o -c /home/minhmacg/Documents/beat/src/main.cpp",
+  "file": "/home/minhmacg/Documents/beat/src/main.cpp",
+  "output": "CMakeFiles/beatdata.dir/src/main.cpp.o"
 },
 {
   "directory": "/home/minhmacg/Documents/beat/build",
-  "command": "/usr/bin/c++  -I/home/minhmacg/Documents/beat/include -g -std=gnu++20 -o CMakeFiles/cpp_beat.dir/src/main.cpp.o -c /home/minhmacg/Documents/beat/src/main.cpp",
-  "file": "/home/minhmacg/Documents/beat/src/main.cpp",
-  "output": "CMakeFiles/cpp_beat.dir/src/main.cpp.o"
+  "command": "/usr/bin/c++  -I/home/minhmacg/Documents/beat/include -std=gnu++23 -o CMakeFiles/beatdata.dir/src/Beat.cpp.o -c /home/minhmacg/Documents/beat/src/Beat.cpp",
+  "file": "/home/minhmacg/Documents/beat/src/Beat.cpp",
+  "output": "CMakeFiles/beatdata.dir/src/Beat.cpp.o"
 }
 ]

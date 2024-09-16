@@ -113,29 +113,28 @@ preinstall/fast:
 
 # clear depends
 depend:
-	$(CMAKE_COMMAND) -P /home/minhmacg/Documents/beat/build/CMakeFiles/VerifyGlobs.cmake
 	$(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named cpp_beat
+# Target rules for targets named beatdata
 
 # Build rule for target.
-cpp_beat: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 cpp_beat
-.PHONY : cpp_beat
+beatdata: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 beatdata
+.PHONY : beatdata
 
 # fast build rule for target.
-cpp_beat/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/cpp_beat.dir/build.make CMakeFiles/cpp_beat.dir/build
-.PHONY : cpp_beat/fast
+beatdata/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/beatdata.dir/build.make CMakeFiles/beatdata.dir/build
+.PHONY : beatdata/fast
 
 src/Beat.o: src/Beat.cpp.o
 .PHONY : src/Beat.o
 
 # target to build an object file
 src/Beat.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/cpp_beat.dir/build.make CMakeFiles/cpp_beat.dir/src/Beat.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/beatdata.dir/build.make CMakeFiles/beatdata.dir/src/Beat.cpp.o
 .PHONY : src/Beat.cpp.o
 
 src/Beat.i: src/Beat.cpp.i
@@ -143,7 +142,7 @@ src/Beat.i: src/Beat.cpp.i
 
 # target to preprocess a source file
 src/Beat.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/cpp_beat.dir/build.make CMakeFiles/cpp_beat.dir/src/Beat.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/beatdata.dir/build.make CMakeFiles/beatdata.dir/src/Beat.cpp.i
 .PHONY : src/Beat.cpp.i
 
 src/Beat.s: src/Beat.cpp.s
@@ -151,7 +150,7 @@ src/Beat.s: src/Beat.cpp.s
 
 # target to generate assembly for a file
 src/Beat.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/cpp_beat.dir/build.make CMakeFiles/cpp_beat.dir/src/Beat.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/beatdata.dir/build.make CMakeFiles/beatdata.dir/src/Beat.cpp.s
 .PHONY : src/Beat.cpp.s
 
 src/main.o: src/main.cpp.o
@@ -159,7 +158,7 @@ src/main.o: src/main.cpp.o
 
 # target to build an object file
 src/main.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/cpp_beat.dir/build.make CMakeFiles/cpp_beat.dir/src/main.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/beatdata.dir/build.make CMakeFiles/beatdata.dir/src/main.cpp.o
 .PHONY : src/main.cpp.o
 
 src/main.i: src/main.cpp.i
@@ -167,7 +166,7 @@ src/main.i: src/main.cpp.i
 
 # target to preprocess a source file
 src/main.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/cpp_beat.dir/build.make CMakeFiles/cpp_beat.dir/src/main.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/beatdata.dir/build.make CMakeFiles/beatdata.dir/src/main.cpp.i
 .PHONY : src/main.cpp.i
 
 src/main.s: src/main.cpp.s
@@ -175,7 +174,7 @@ src/main.s: src/main.cpp.s
 
 # target to generate assembly for a file
 src/main.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/cpp_beat.dir/build.make CMakeFiles/cpp_beat.dir/src/main.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/beatdata.dir/build.make CMakeFiles/beatdata.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
 
 # Help Target
@@ -186,7 +185,7 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... cpp_beat"
+	@echo "... beatdata"
 	@echo "... src/Beat.o"
 	@echo "... src/Beat.i"
 	@echo "... src/Beat.s"
@@ -204,7 +203,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	$(CMAKE_COMMAND) -P /home/minhmacg/Documents/beat/build/CMakeFiles/VerifyGlobs.cmake
 	$(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

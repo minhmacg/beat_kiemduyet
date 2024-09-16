@@ -1,2 +1,2 @@
-# Empty dependencies file for cpp_beat.
+# Empty dependencies file for beatdata.
 # This may be replaced when dependencies are built.
