@@ -38,8 +38,8 @@ int main(int argc, const char** argv)
 	{
 		std::cout << "line " << i << '\n';
 		std::vector<std::string> matches;
-		std::regex rg {"([\\d_]+_n)(_\\d*.(png|jpg|mp4))?"}; // any number of digit or 'n' or '_',
-												  // follow by .jpg, .png or .mp4
+		std::regex rg {"([\\d_]+_n)(_\\d*.(png|jpg|mp4))?"}; // any number of digit or '_', followed by a 'n',
+												  // maybe followed by .jpg, .png or .mp4
 		std::smatch rm;
 		while (std::regex_search(line,rm,rg))
 		{

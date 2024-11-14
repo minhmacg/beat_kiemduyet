@@ -1,8 +1,10 @@
 #include <Beat.hpp>
 #include <ranges>
+#include <regex>
+
 using nlohmann::json;
 
-inline std::string convert_time(std::time_t& t)
+inline std::string convert_time(const std::time_t& t)
 {
 	std::time_t seconds = t/1000;
 	char time[15];
@@ -26,7 +28,7 @@ inline std::string vec_to_string(const vec_str& v)
 	auto i = v.cbegin();
 	while (i != v.cend())
 	{
-		if (!(*i).empty()) rs += *i;
+		if (!i->empty()) rs += *i;
 		if (i + 1 != v.cend()) rs += SS;
 		i++;
 	};
@@ -59,9 +61,7 @@ messvec vec_from_input(const json& js)
 {
 	messvec rs;
 	for (const auto& i: js)
-	{
-		rs.push_back(std::make_shared<Messages>(from_json(i)));
-	};
+		rs.push_back(from_json(i));
 	return rs;
 }
 
@@ -126,20 +126,17 @@ messvec& join_messages(messvec& m, const std::string& pn)
 		while (it + 1 != m.end())
 		{
 			auto it2 = it + 1;
-			std::time_t dt = (*it)->time - (*it2)->time;
-			if ((*it)->btv == (*it2)->btv
-				&&	dt < 50000)
+			std::time_t dt = it->time - it2->time;
+			if (it->btv == it2->btv && dt < 50000)
 			{
-				if ((*it)->link.empty() 
-					&& !(*it2)->link.empty())
+				if (it->link.empty() && !it2->link.empty())
 				{
-					(*it2)->content = (*it)->content;
+					it2->content = it->content;
 					it = m.erase(it);
 				}
-				else if (!(*it)->link.empty()
-					&& (*it2)->link.empty())
+				else if (!it->link.empty() && it2->link.empty())
 				{
-					(*it2)->link = (*it)->link;
+					it2->link = it->link;
 					it = m.erase(it);
 				}
 				else ++it;
@@ -152,40 +149,35 @@ messvec& join_messages(messvec& m, const std::string& pn)
 		while (it + 1 != m.end())
 		{
 			auto it2 = it + 1;
-			std::time_t dt = (*it)->time - (*it2)->time;
-			if ((*it)->btv == (*it2)->btv
-				&&	dt < 50000)
+			std::time_t dt = it->time - it2->time;
+			if (!it->reactions.empty() && !it2->reactions.empty()
+				&& it->btv == it2->btv 
+				&& dt < 50000)
 			{
-				if ((*it)->content.empty() 
-					&& !(*it2)->content.empty())
+				if (it->content.empty() && !it2->content.empty())
 				{
-					if (!(*it)->photo.links.empty()
-						&& (*it2)->photo.links.empty())
+					if (!it->photo.links.empty() && it2->photo.links.empty())
 					{
-						(*it2)->photo = (*it)->photo;
+						it2->photo = it->photo;
 						it = m.erase(it);
 					}
-					else if (!(*it)->video.links.empty()
-						&& (*it2)->video.links.empty())
+					else if (!it->video.links.empty() && it2->video.links.empty())
 					{
-						(*it2)->video = (*it)->video;
+						it2->video = it->video;
 						it = m.erase(it);
 					}
 					else ++it;
 				}
-				else if (!(*it)->content.empty() 
-					&& (*it2)->content.empty())
+				else if (!it->content.empty() && it2->content.empty())
 				{
-					if ((*it)->photo.links.empty()
-						&& !(*it2)->photo.links.empty())
+					if (it->photo.links.empty() && !it2->photo.links.empty())
 					{
-						(*it2)->content = (*it)->content;
+						it2->content = it->content;
 						it = m.erase(it);
 					}
-					else if ((*it)->video.links.empty()
-						&& !(*it2)->video.links.empty())
+					else if (it->video.links.empty() && !it2->video.links.empty())
 					{
-						(*it2)->content = (*it)->content;
+						it2->content = it->content;
 						it = m.erase(it);
 					}
 					else ++it;
@@ -198,13 +190,11 @@ messvec& join_messages(messvec& m, const std::string& pn)
 	return m;
 }
 
-inline std::tuple<std::string, std::string> get_censor_rs(const auto& reactions)
+std::tuple<std::string, std::string> get_censor_rs(const auto& reactions)
 {
 	auto validkdv = [](const std::string& name)
 	{
-		return name == "Thành Đạt"
-				|| name == "Đức Bách"
-				|| name == "Tuấn Dũng";
+		return name == "Thành Đạt" || name == "Đức Bách" || name == "Tuấn Dũng";
 	};
 	auto convertname = [](const std::string& name)
 	{
@@ -212,6 +202,7 @@ inline std::tuple<std::string, std::string> get_censor_rs(const auto& reactions)
 		if (name == "Đức Bách") return "Bách";
 		return "";
 	};
+
 	std::tuple<std::string, std::string> rs = {"Duyệt", ""};
 	auto& [kq,kdv] = rs;
 	if (auto check_kdv = std::ranges::find_if(reactions, validkdv, &Messages::reaction::actor);
@@ -225,29 +216,31 @@ inline std::tuple<std::string, std::string> get_censor_rs(const auto& reactions)
 };
 
 
-inline std::string page_map_f(const std::string& pn, 
-		const std::shared_ptr<Messages>& m)
+std::string page_map_f(const std::string& pn, 
+		const Messages& m)
 {
 	std::string rs;
 	if (pn != "tiktok") return page_map.at(pn);
-	if (m->btv == "Đào Xuân Ánh"
-		|| m->btv == "Lưu Viết Hoàng"
-		|| m->btv == "Vũ Văn Khánh") 
+	if (m.btv == "Đào Xuân Ánh"
+		|| m.btv == "Lưu Viết Hoàng"
+		|| m.btv == "Tống Bùi Vĩnh Hoàng"
+		|| m.btv == "Nguyễn Thị Kiều Khanh"
+		|| m.btv == "Vũ Văn Khánh") 
 	{
 		rs = "TT - BEATVN";
-		if (m->content.find("@Linh Phương") != std::string::npos) 
+		if (m.content.find("@Linh Phương") != std::string::npos) 
 			rs = "TT - HelloVietnam";
 	}
-	if (m->btv == "Linh Phương" || m->btv == "Ngô Tiến Dũng") rs = "TT - HelloVietnam";
-	if (m->btv == "Bùi Quang Hiếu" || m->btv == "Nguyễn Đồng Tường") 
+	if (m.btv == "Phạm Hồ Linh Phương" || m.btv == "Ngô Tiến Dũng") rs = "TT - HelloVietnam";
+	if (m.btv == "Bùi Quang Hiếu" || m.btv == "Nguyễn Đồng Tường") 
 		rs = "TT - Beatvn Viral World";
-	if (m->btv == "Đỗ Thị Lệ") rs = "TT - SHOWBEAT";
-	if (m->btv == "Nguyễn Song An") rs = "TT - BEAT the Game";
+	if (m.btv == "Đỗ Thị Lệ") rs = "TT - SHOWBEAT";
+	if (m.btv == "Nguyễn Song An") rs = "TT - BEAT the Game";
 	
 	return rs;
 }
 
-void print_to_tsv(const std::string title, std::ofstream& f,
+void print_to_tsv(const std::string& title, std::ofstream& f,
 		const messvec& mv,
 		const std::string& page_name)
 {
@@ -262,14 +255,33 @@ void print_to_tsv(const std::string title, std::ofstream& f,
 			"cap source","kdv","kq","cmt"});
 	for (auto& m: mv)
 	{
-		auto [kq, kdv] = get_censor_rs(m->reactions); 
-		print({ convert_time(m->time), page_map_f(page_name,m), 
-				m->btv, m->content,
-				vec_to_string(media_code(m->photo.links)),
-				vec_to_string(media_code(m->video.links)),
-				m->link, "", kdv, kq, ""});
+		auto [kq, kdv] = get_censor_rs(m.reactions); 
+		print({ convert_time(m.time), page_map_f(page_name,m), 
+				m.btv, m.content,
+				vec_to_string(media_code(m.photo.links)),
+				vec_to_string(media_code(m.video.links)),
+				m.link, "", kdv, kq, ""});
 	}
-	f.close();
 }
 
+
+std::unordered_map<std::string, std::string> fetch_data(const std::filesystem::path& path)
+{
+	std::ifstream f {path};
+	std::string line;
+	
+	std::unordered_map<std::string, std::string> rs;
+	while (std::getline(f,line))
+	{
+		if (auto commapos = line.find(','); commapos != std::string::npos)
+		{
+			std::string fbname = line.substr(0, commapos);
+			std::string realname = line.substr(commapos + 1);
+
+			rs[fbname] = realname;
+		};
+	};
+
+	return rs;
+};
 

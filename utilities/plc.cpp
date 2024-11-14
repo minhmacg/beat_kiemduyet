@@ -88,7 +88,8 @@ int main(int argc, const char** argv)
 	if (!f.is_open()) std::cout << "file doesn't exist\n";
 	
 	std::string line;
-	std::regex plc_rg {"(\\d+)\\s*$"};
+	// a tab followed by any number of digit, and any number of whitespace till the end of line
+	std::regex plc_rg {"\t(\\d+)\\s*$"};
 	std::ofstream of;
 	of.open("output/plc_converted_" + file.filename().string());
 	while (std::getline(f,line))
@@ -96,6 +97,7 @@ int main(int argc, const char** argv)
 		std::smatch rm;
 		if (std::regex_search(line,rm,plc_rg))
 		{
+			std::cout << rm.str() << '\n';
 			line.replace(line.find_last_of(rm.str(1)) - rm.str(1).size() + 1, 
 					rm.str(1).size(), 
 					plc.at(std::stoi(rm.str(1))));
