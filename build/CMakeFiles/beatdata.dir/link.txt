@@ -1,1 +1,0 @@
-/usr/bin/c++ CMakeFiles/beatdata.dir/src/main.cpp.o CMakeFiles/beatdata.dir/src/Beat.cpp.o -o beatdata

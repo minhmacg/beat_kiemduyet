@@ -1,3 +1,0 @@
-/home/minhmacg/Documents/beat/build/CMakeFiles/beatdata.dir
-/home/minhmacg/Documents/beat/build/CMakeFiles/edit_cache.dir
-/home/minhmacg/Documents/beat/build/CMakeFiles/rebuild_cache.dir
