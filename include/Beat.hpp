@@ -17,20 +17,8 @@ struct Messages
 		std::string id;
 		vec_str links;
 	};
-
-	std::string id, page, btv, content, link;
-	std::time_t time;
-	
-	static int counter;
-	Base photo;
-	Base video;
-	Base source;
-	struct reaction
-	{
-		std::string react;
-		std::string actor;
-	};
-	std::vector<reaction> reactions;
+	std::string btv, content;
+	Base photo, video;
 };
 Messages from_json(const nlohmann::json&);
 

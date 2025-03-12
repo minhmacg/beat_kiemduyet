@@ -1,5 +1,7 @@
 .git
 build/
+medias/
+cleaned_medias/
 .cache/
 inbox/
 done/

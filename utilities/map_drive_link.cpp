@@ -45,7 +45,7 @@ int main(int argc, const char** argv)
 		{
 			std::cout << "found: ";
 			std::cout << rm.str() << '\n';
-			line.replace(line.find(rm.str()), rm.str().size(), s[rm.str(1)]);
+			line.replace(line.find(rm.str()), rm.str().size(), s[rm.str()]);
 		};
 		i++;
 		std::cout << "................................\n";

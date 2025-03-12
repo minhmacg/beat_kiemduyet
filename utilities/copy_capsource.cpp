@@ -38,7 +38,7 @@ int main(int argc, const char** argv)
 	{
 		for (const auto& page: vpf)
 		{
-			for (const auto& img: page._medias)
+			for (const auto& img: page._photos)
 			{
 				if (img.find(s) != std::string::npos)
 				{
