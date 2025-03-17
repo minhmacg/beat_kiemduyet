@@ -9,4 +9,5 @@ links/
 output_tsv/
 notdone/
 json_src/
+raw_json/
 utilities/output
