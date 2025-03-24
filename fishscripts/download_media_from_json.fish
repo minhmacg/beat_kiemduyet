@@ -7,6 +7,7 @@ mkdir -p ../medias/$foldername/videos
 
 set index 1
 
+echo $argv[1]
 for link in $links
 	set filename (echo $link | grep -Eo '[^/]+\.(jpg|png|mp4|jpeg)')
 	set dst
@@ -18,7 +19,9 @@ for link in $links
 	end
 
 	echo "[$index/$total] Downloading: $filename"
-	curl -o $dst $link
+	if not test -e $dst
+		curl -o $dst $link
+	end
 
 	set index (math $index + 1)
 end

@@ -1,9 +1,11 @@
+#include "parse_tsv.hpp"
 #include <iostream>
 #include <regex>
 #include <array>
 #include <fstream>
 #include <filesystem>
 #include <format>
+#include <algorithm>
 std::array plc
 {
 	// FB,
@@ -75,6 +77,15 @@ std::array plc
 	"Tôn giáo",
 	"Đối tác khách hàng",
 };
+
+std::array btv
+{
+	"Phong", "Bách", "Dũng",
+};
+std::array stt
+{
+	"Duyệt", "Sửa/ xoá bài - cơ bản", "Sửa/ xóa bài - nâng cao" 
+};
 int main(int argc, const char** argv)
 {
 	if (argc != 2) 
@@ -88,24 +99,31 @@ int main(int argc, const char** argv)
 	f.open(argv[1]);
 	if (!f.is_open()) std::cout << "file doesn't exist\n";
 	
-	std::string line;
-	// a tab followed by any number of digit, and any number of whitespace till the end of line
-	std::regex plc_rg {"\t(\\d+)$"};
-	std::ofstream of;
-	of.open("output/plc_converted_" + file.filename().string());
-	while (std::getline(f,line))
-	{
-		std::smatch rm;
-		if (std::regex_search(line,rm,plc_rg))
-		{
-			std::cout << rm.str() << '\n';
-			line.replace(line.find_last_of(rm.str(1)) - rm.str(1).size() + 1, 
-					rm.str(1).size(), 
-					std::format("\"{}\"", plc.at(std::stoi(rm.str(1)))));
-		};
-		of << line << '\n';
-	};
-	f.close();
-	of.close();
+	auto data {parse_tsv(argv[1])};
 
+	for (auto& rows: data)
+	{
+		auto& rbtv {rows[8]};
+		auto& rstt {rows[9]};
+		auto& rplc {rows[11]};
+
+		if (!rbtv.empty()) rbtv = btv.at(std::stoi(rbtv)); 
+		if (!rstt.empty()) rstt = stt.at(std::stoi(rstt));
+		else rstt = stt.front();
+		if (!rplc.empty()) rplc = plc.at(std::stoi(rplc)); 
+
+		for (const auto& field: rows)
+			std::cout << field << '\t';
+		std::cout << '\n';
+	};
+	// a tab followed by any number of digit, and any number of whitespace till the end of line
+	//std::regex plc_rg {"\t(\\d+)$"};
+	//if (std::regex_search(line,rm,plc_rg))
+	//{
+	//	std::cout << rm.str() << '\n';
+	//	line.replace(line.find_last_of(rm.str(1)) - rm.str(1).size() + 1, 
+	//			rm.str(1).size(), 
+	//			std::format("\"{}\"", plc.at(std::stoi(rm.str(1)))));
+	//};
+		
 };

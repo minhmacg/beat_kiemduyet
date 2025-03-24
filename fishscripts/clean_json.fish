@@ -8,6 +8,7 @@ set final_results
 
 # Loop through each object in the filtered file
 for i in (seq 0 (math "$length - 1"))
+	echo "processing $i/$length" >&2
     # Get the current object
     set current_object (echo $file | jq ".[$i]")
 

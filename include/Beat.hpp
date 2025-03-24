@@ -28,7 +28,7 @@ messvec vec_from_input(const nlohmann::json&);
 messvec& only_reactions(messvec&);
 messvec& join_messages(messvec&, const std::string&);
 
-void print_to_tsv(const std::string&, std::ofstream&, const messvec&, const std::string&);
+void print_to_tsv(const std::string&, std::ostream&, const messvec&, const std::string&);
 // processing:
 // [x] only liked/reacted messages
 // [x] convert time

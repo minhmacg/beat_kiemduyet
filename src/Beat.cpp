@@ -20,9 +20,12 @@ inline std::string media_code(const std::string& vs)
 	return rs;
 }
 
-inline std::string vec_to_string(const vec_str& v)
+std::string vec_to_string(const vec_str& v)
 {
-	std::string rs {'\''};
+	if (v.size() == 1) return *v.begin();
+	if (v.size() == 0) return {};
+
+	std::string rs {'\"'};
 	auto i = v.cbegin();
 	while (i != v.cend())
 	{
@@ -30,7 +33,7 @@ inline std::string vec_to_string(const vec_str& v)
 		if (i + 1 != v.cend()) rs += SS;
 		i++;
 	};
-	rs += '\'';
+	rs += '\"';
 	std::ranges::replace(rs, ',', '\n');
 	return rs;
 }
@@ -225,7 +228,7 @@ std::string page_map_f(const std::string& pn,
 	return rs;
 }
 
-void print_to_tsv(const std::string& title, std::ofstream& f,
+void print_to_tsv(const std::string& title, std::ostream& f,
 		const messvec& mv,
 		const std::string& page_name)
 {
@@ -235,7 +238,6 @@ void print_to_tsv(const std::string& title, std::ofstream& f,
 			f << i << FS;
 		f << '\n';
 	};
-	f.open(title);
 	print({"time","page","btv","content","photo","video","link",
 			"cap source","kdv","kq","cmt"});
 	for (auto& m: mv)

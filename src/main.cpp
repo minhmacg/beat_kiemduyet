@@ -22,7 +22,7 @@ int main(int argc, const char** argv)
 	std::filesystem::path json_path {"json_src"};
 	for (auto& file: std::filesystem::directory_iterator{json_path})
 	{
-		std::cout << "test\n";
+		//std::cout << "test\n";
 		std::string fp = file.path();
 		f.open(file.path());
 		json input_data;
@@ -38,19 +38,19 @@ int main(int argc, const char** argv)
 		std::string output_fmt {"output_tsv/output_" + page_name + ".tsv"};
 		std::filesystem::create_directory("output_tsv");
 		
-		std::cout << output_fmt << '\n';
+		//std::cout << output_fmt << '\n';
 
 		messvec rs {vec_from_input(input_data)};
-		for (auto& m: rs)
-		{
-			std::cout << page_name << '\t' 
-				<< m.btv << '\t' 
-				<< m.content.substr(0,30) << '\n'
-				<< vec_to_string((m.photo.links))
-				<< "--------------------\n";
-		};
+		//for (auto& m: rs)
+		//{
+		//	std::cout << page_name << '\t' 
+		//		<< m.btv << '\t' 
+		//		<< m.content.substr(0,30) << '\n'
+		//		<< vec_to_string((m.photo.links))
+		//		<< "--------------------\n";
+		//};
 		std::ofstream fo;
-		print_to_tsv(output_fmt, fo, rs, page_name);
+		print_to_tsv(output_fmt, std::cout, rs, page_name);
 		
 		//Messages m = from_json(rs[0]);
 		//std::cout << rs << "\n";
