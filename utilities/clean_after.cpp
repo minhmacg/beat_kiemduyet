@@ -100,9 +100,20 @@ int main(int argc, const char** argv)
 	if (!f.is_open()) std::cout << "file doesn't exist\n";
 	
 	auto data {parse_tsv(argv[1])};
-
+	
+	bool need_fill_date = false;
+	std::string_view current_date;
+	std::string_view current_page;
 	for (auto& rows: data)
 	{
+		auto& rdate {rows[0]};
+		const auto& rpage {rows[1]};
+		if (current_page != rpage) current_date = "";
+		current_page = rpage;
+
+		if (!rdate.empty()) current_date = rdate;
+		else rdate = current_date;
+
 		auto& rbtv {rows[8]};
 		auto& rstt {rows[9]};
 		auto& rplc {rows[11]};
@@ -110,7 +121,23 @@ int main(int argc, const char** argv)
 		if (!rbtv.empty()) rbtv = btv.at(std::stoi(rbtv)); 
 		if (!rstt.empty()) rstt = stt.at(std::stoi(rstt));
 		else rstt = stt.front();
-		if (!rplc.empty()) rplc = plc.at(std::stoi(rplc)); 
+		if (!rplc.empty())
+		{
+			if (rplc.find(",") != std::string::npos)
+			{
+				std::stringstream ss{rplc};
+				rplc.clear();
+				rplc += "\"";
+				std::string p;
+				while (std::getline(ss, p, ','))
+				{
+					rplc += "\"\"" + std::string{plc.at(std::stoi(p))} + "\"\"" + ",";
+				};
+				rplc = rplc.substr(0, rplc.size() - 1);
+				rplc += "\"";
+			}
+			else rplc = plc.at(std::stoi(rplc)); 
+		};
 
 		for (const auto& field: rows)
 			std::cout << field << '\t';
