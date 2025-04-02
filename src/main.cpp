@@ -49,14 +49,14 @@ int main(int argc, const char** argv)
 		//		<< vec_to_string((m.photo.links))
 		//		<< "--------------------\n";
 		//};
-		std::ofstream fo;
+
+		std::cerr << "Cooking " << page_name << '\n';
 		print_to_tsv(output_fmt, std::cout, rs, page_name);
 		
 		//Messages m = from_json(rs[0]);
 		//std::cout << rs << "\n";
 		
 		//convert_time(rs);
-		//join_messages(rs);
 		//pages_name(rs);
 
 		//std::time_t t {1715736514107/1000};

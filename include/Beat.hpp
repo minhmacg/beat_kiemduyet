@@ -12,13 +12,9 @@ typedef std::vector<std::string> vec_str;
 typedef std::map<std::string,int> pageid;
 struct Messages
 {
-	struct Base
-	{
-		std::string id;
-		vec_str links;
-	};
+	vec_str photo, video, links;
 	std::string btv, content;
-	Base photo, video;
+	bool has_react {false};
 };
 Messages from_json(const nlohmann::json&);
 

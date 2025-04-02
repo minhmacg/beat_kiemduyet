@@ -3,7 +3,8 @@
 cd raw_json/
 pwd
 for file in *json
-	fish ../fishscripts/download_media_from_json.fish $file
-	../utilities/clean_json -i $file > ../json_src/$file
+	set output ../json_src/$file
+	../utilities/clean_json -i $file > $output
+	fish ../fishscripts/download_media_from_json.fish $output
 	echo $file
 end

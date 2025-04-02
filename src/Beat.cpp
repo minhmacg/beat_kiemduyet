@@ -20,6 +20,20 @@ inline std::string media_code(const std::string& vs)
 	return rs;
 }
 
+vec_str get_links(const std::string& input)
+{
+	vec_str rs;
+	std::regex rg(R"(https?://[^\s'",<>{}[\]()\\|^]+)");
+	std::smatch matches;
+    std::sregex_iterator it(input.begin(), input.end(), rg);
+    std::sregex_iterator end;
+
+    while (it != end) {
+        rs.push_back(it->str());
+        ++it; 
+    }
+	return rs;
+};
 std::string vec_to_string(const vec_str& v)
 {
 	if (v.size() == 1) return *v.begin();
@@ -58,11 +72,78 @@ std::string vec_to_string(const vec_str& v)
 //	return rs;
 //}
 
+messvec& join_messages(messvec& m)
+{
+	for (int i{0}; i!= m.size(); i++)
+	{
+		auto& m1 {m[i]};
+		if (!m1.content.empty())
+		{
+			int c {1};
+			while (c < 3)
+			{
+				if (i - c >= 0)
+				{
+					auto& m2 {m[i-c]};
+					if ((m2.btv == m1.btv) && m2.content.empty())
+					{
+						if(!m2.photo.empty())
+						{
+							m1.photo = std::move(m2.photo);
+							break;
+						};
+						if (!m2.video.empty())
+						{
+							m1.video = std::move(m2.video);
+							break;
+						};
+					};
+				};
+				if (i + c < m.size())
+				{
+					auto& m2 {m[i+c]};
+					if ((m2.btv == m1.btv) && m2.content.empty())
+					{
+						if(!m2.photo.empty())
+						{
+							m1.photo = std::move(m2.photo);
+							break;
+						};
+						if (!m2.video.empty())
+						{
+							m1.video = std::move(m2.video);
+							break;
+						};
+					};
+				};
+				c++;
+			};
+		};
+	};
+	m.erase(std::remove_if(m.begin(), m.end(), [](const auto& msg)
+			{
+				return msg.content.empty() && msg.photo.empty() && msg.video.empty();
+			}), m.end());
+
+	return m;
+};
+//messvec& filter_message(messvec& m)
+//{
+//	auto [f,l] = std::ranges::remove_if(m, 
+//			[](auto&& r){return !r.has_react && r.links.empty();});
+//	m.erase(f,l);
+//	return m;
+//};
 messvec vec_from_input(const json& js)
 {
 	messvec rs;
 	for (const auto& i: js)
 		rs.push_back(from_json(i));
+	join_messages(rs);
+	rs.erase(std::remove_if(rs.begin(), rs.end(), [](auto&& m)
+			{
+				return !m.has_react && m.links.empty() || ((m.btv == "Đức Bách" || m.btv == "Tuấn Dũng") && (m.photo.empty()));
+			}), rs.end());
 	return rs;
 }
 
@@ -77,6 +158,7 @@ Messages from_json(const json& js)
 		std::ranges::replace(rs.content, '\n', ' ');
 		std::ranges::replace(rs.content, '\t', '	');
 		std::ranges::replace(rs.content, '\r', ' ');
+		rs.links = get_links(rs.content);
 	}
 	catch (json::out_of_range& err) {};
 	//
@@ -85,10 +167,15 @@ Messages from_json(const json& js)
 		for(auto& p: js.at("media"))
 		{
 			if (p["type"] == "image")
-				rs.photo.links.push_back(media_code(p.at("src")));
+				rs.photo.push_back(media_code(p.at("src")));
 			if (p["type"] == "video")
-				rs.video.links.push_back(media_code(p.at("src")));
+				rs.video.push_back(media_code(p.at("src")));
 		};
+	}
+	catch (json::out_of_range& err) {};
+	try
+	{
+		if (js.at("react").size() > 0) rs.has_react = true;
 	}
 	catch (json::out_of_range& err) {};
 	//
@@ -96,14 +183,6 @@ Messages from_json(const json& js)
 }
 
 
-//messvec& only_reactions(messvec& m)
-//{
-//	auto [f,l] = std::ranges::remove_if(m, 
-//			[](auto&& r){return r.empty();},
-//			&Messages::reactions);
-//	m.erase(f,l);
-//	return m;
-//};
 
 //messvec& join_messages(messvec& m, const std::string& pn)
 //{
@@ -143,12 +222,12 @@ Messages from_json(const json& js)
 //			{
 //				if (it->content.empty() && !it2->content.empty())
 //				{
-//					if (!it->photo.links.empty() && it2->photo.links.empty())
+//					if (!it->photo.empty() && it2->photo.empty())
 //					{
 //						it2->photo = it->photo;
 //						it = m.erase(it);
 //					}
-//					else if (!it->video.links.empty() && it2->video.links.empty())
+//					else if (!it->video.empty() && it2->video.empty())
 //					{
 //						it2->video = it->video;
 //						it = m.erase(it);
@@ -157,12 +236,12 @@ Messages from_json(const json& js)
 //				}
 //				else if (!it->content.empty() && it2->content.empty())
 //				{
-//					if (it->photo.links.empty() && !it2->photo.links.empty())
+//					if (it->photo.empty() && !it2->photo.empty())
 //					{
 //						it2->content = it->content;
 //						it = m.erase(it);
 //					}
-//					else if (it->video.links.empty() && !it2->video.links.empty())
+//					else if (it->video.empty() && !it2->video.empty())
 //					{
 //						it2->content = it->content;
 //						it = m.erase(it);
@@ -204,29 +283,29 @@ Messages from_json(const json& js)
 //};
 
 
-std::string page_map_f(const std::string& pn, 
-		const Messages& m)
-{
-	std::string rs;
-	if (pn != "tiktok") return page_map.at(pn);
-	if (m.btv == "Đào Xuân Ánh"
-		|| m.btv == "Lưu Viết Hoàng"
-		|| m.btv == "Tống Bùi Vĩnh Hoàng"
-		|| m.btv == "Nguyễn Thị Kiều Khanh"
-		|| m.btv == "Vũ Văn Khánh") 
-	{
-		rs = "TT - BEATVN";
-		if (m.content.find("@Linh Phương") != std::string::npos) 
-			rs = "TT - HelloVietnam";
-	}
-	if (m.btv == "Phạm Hồ Linh Phương" || m.btv == "Ngô Tiến Dũng") rs = "TT - HelloVietnam";
-	if (m.btv == "Bùi Quang Hiếu" || m.btv == "Nguyễn Đồng Tường") 
-		rs = "TT - Beatvn Viral World";
-	if (m.btv == "Đỗ Thị Lệ") rs = "TT - SHOWBEAT";
-	if (m.btv == "Nguyễn Song An") rs = "TT - BEAT the Game";
-	
-	return rs;
-}
+//std::string page_map_f(const std::string& pn, 
+//		const Messages& m)
+//{
+//	std::string rs;
+//	if (pn != "tiktok") return page_map.at(pn);
+//	if (m.btv == "Đào Xuân Ánh"
+//		|| m.btv == "Lưu Viết Hoàng"
+//		|| m.btv == "Tống Bùi Vĩnh Hoàng"
+//		|| m.btv == "Nguyễn Thị Kiều Khanh"
+//		|| m.btv == "Vũ Văn Khánh") 
+//	{
+//		rs = "TT - BEATVN";
+//		if (m.content.find("@Linh Phương") != std::string::npos) 
+//			rs = "TT - HelloVietnam";
+//	}
+//	if (m.btv == "Phạm Hồ Linh Phương" || m.btv == "Ngô Tiến Dũng") rs = "TT - HelloVietnam";
+//	if (m.btv == "Bùi Quang Hiếu" || m.btv == "Nguyễn Đồng Tường") 
+//		rs = "TT - Beatvn Viral World";
+//	if (m.btv == "Đỗ Thị Lệ") rs = "TT - SHOWBEAT";
+//	if (m.btv == "Nguyễn Song An") rs = "TT - BEAT the Game";
+//	
+//	return rs;
+//}
 
 void print_to_tsv(const std::string& title, std::ostream& f,
 		const messvec& mv,
@@ -240,12 +319,14 @@ void print_to_tsv(const std::string& title, std::ostream& f,
 	};
 	print({"time","page","btv","content","photo","video","link",
 			"cap source","kdv","kq","cmt"});
+
 	for (auto& m: mv)
 	{
-		print({"", page_map_f(page_name,m), 
+		print({"", page_map.at(page_name), 
 				m.btv, m.content,
-				vec_to_string((m.photo.links)),
-				vec_to_string((m.video.links))});
+				vec_to_string(m.photo),
+				vec_to_string(m.video),
+				vec_to_string(m.links)});
 	}
 }
 

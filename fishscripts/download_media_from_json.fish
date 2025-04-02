@@ -1,6 +1,7 @@
 set links (jq -r '.[].media | select(. | length > 0) | .[].src' $argv[1])
 set total (count $links)
-set foldername (echo $argv[1] | sed 's/\.json//')
+set foldername (echo $argv[1] | sed 's|.*/\([^/]*\)\.json|\1|')
+echo $foldername
 
 mkdir -p ../medias/$foldername/photos
 mkdir -p ../medias/$foldername/videos
@@ -18,7 +19,7 @@ for link in $links
 		set dst (echo "../medias/$foldername/photos/$filename")
 	end
 
-	echo "[$index/$total] Downloading: $filename"
+	echo "[$index/$total] Downloading: $dst"
 	if not test -e $dst
 		curl -o $dst $link
 	end

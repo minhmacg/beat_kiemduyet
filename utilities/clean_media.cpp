@@ -7,7 +7,7 @@ constexpr std::string_view PATH {"../medias"};
 
 std::optional<std::string> try_get_media_and_remove_from_line(std::string& line)
 {
-	std::regex rg {"([\\d_]+_n).(png|jpg|mp4)"};
+	std::regex rg {"([\\d_]+_n)(.(png|jpg|mp4))?"};
 	std::smatch rm;
 	if (std::regex_search(line, rm, rg))
 	{
