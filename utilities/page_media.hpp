@@ -17,10 +17,10 @@ struct page
 
 	std::optional<std::string> find_media(const std::string& name) const
 	{
-		if (_photos.contains(name))
-			return photo_folder_path() + "/" + name;
-		else if (_videos.contains(name))
-			return video_folder_path() + "/" + name;
+		if (auto f = std::ranges::find_if(_photos, [&](const auto& p){return p.find(name) != std::string::npos;}); f != _photos.end())
+			return photo_folder_path() + "/" + *f;
+		else if (auto f = std::ranges::find_if(_videos, [&](const auto& v){return v.find(name) != std::string::npos;}); f != _videos.end())
+			return video_folder_path() + "/" + *f;
 		else
 			return std::nullopt;
 	};

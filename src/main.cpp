@@ -20,8 +20,17 @@ int main(int argc, const char** argv)
 	
 	using nlohmann::json;
 	std::filesystem::path json_path {"json_src"};
+	auto print = [&](std::ostream& f, std::initializer_list<std::string> args)
+	{
+		for (auto& i: args)
+			f << i << FS;
+		f << '\n';
+	};
+	print(std::cout, {"time","pagename","username","content","photo","video","link",
+			"like","reply_origin","kdv","kq","cmt"});
 	for (auto& file: std::filesystem::directory_iterator{json_path})
 	{
+		if (!std::filesystem::is_regular_file(file)) continue;
 		//std::cout << "test\n";
 		std::string fp = file.path();
 		f.open(file.path());
@@ -40,7 +49,7 @@ int main(int argc, const char** argv)
 		
 		//std::cout << output_fmt << '\n';
 
-		messvec rs {vec_from_input(input_data)};
+		messvec rs {vec_from_input(input_data,page_name)};
 		//for (auto& m: rs)
 		//{
 		//	std::cout << page_name << '\t' 

@@ -1,5 +1,6 @@
 #include <Beat.hpp>
 #include <regex>
+#include <iostream>
 
 using nlohmann::json;
 
@@ -44,11 +45,10 @@ std::string vec_to_string(const vec_str& v)
 	while (i != v.cend())
 	{
 		if (!i->empty()) rs += *i;
-		if (i + 1 != v.cend()) rs += SS;
+		if (i + 1 != v.cend()) rs += ' ';
 		i++;
 	};
 	rs += '\"';
-	std::ranges::replace(rs, ',', '\n');
 	return rs;
 }
 //inline vec_str map_link(const vec_str& vs, const drivemap& dm)
@@ -134,40 +134,214 @@ messvec& join_messages(messvec& m)
 //	m.erase(f,l);
 //	return m;
 //};
-messvec vec_from_input(const json& js)
+
+messvec vec_from_input(const json& js, const std::string& pagename)
 {
 	messvec rs;
 	for (const auto& i: js)
-		rs.push_back(from_json(i));
-	join_messages(rs);
+		rs.push_back(from_json(i, pagename));
+	std::string current_time;
+	for (auto& i: rs)
+	{
+		if (!i.timestamp.empty()) current_time = i.timestamp;
+		else if (!current_time.empty()) i.timestamp = current_time;
+	};
 	rs.erase(std::remove_if(rs.begin(), rs.end(), [](auto&& m)
 			{
-				return !m.has_react && m.links.empty() || ((m.btv == "Đức Bách" || m.btv == "Tuấn Dũng") && (m.photo.empty()));
+				return !m.photo.empty() && std::ranges::find_if(m.photo, [](auto&& p){return p.find("https://scontent") == std::string::npos;}) == m.photo.end();
 			}), rs.end());
+	join_messages(rs);
 	return rs;
 }
 
-Messages from_json(const json& js)
+std::string clean_name(const std::string& name, const std::string& pagename)
+{
+	static std::unordered_map<std::string, std::unordered_map<std::string, std::string>> map {
+   {"beatvn", {
+        {"Bách", "Đức Bách"},
+        {"Chinh", "Chinh Nguyệt"},
+        {"Dũng", "Tuấn Dũng"},
+        {"Hoang", "Luu Viet Hoang"},
+        {"Hồng Dương", "Hồng Dương Lê"},
+        {"Thần đồng nhạc chế", "Hồng Dương Lê"}, // Note: Multiple keys map to same value here
+        {"Lệ", "Lệ Đỗ"},
+        {"Quân", "Hồng Quân"},
+        {"Phươn", "Linh Phương"},
+        {"Tung", "Tung Doan"},
+        {"Việt", "Đoàn Việt"}
+    }},
+    {"beatnow", {
+        {"Bách", "Đức Bách"},
+        {"Dũng", "Tuấn Dũng"},
+        {"Hằng", "Minh Hằng"},
+        {"Nguyễn", "Nguyễn Đức Hậu"},
+        {"Viet Anh", "Nguyen Viet Anh"},
+        {"Đức", "Minh Đức"}
+    }},
+    {"cchn", {
+        {"Bách", "Đức Bách"},
+        {"Dinh Zin", "Tuan Dinh Zin"},
+        {"Dũng", "Tuấn Dũng"},
+        {"Giang", "Giang Uyên"},
+        {"Hoang", "Hoang Tuấn Anh"},
+        {"Huong", "Le Thu Huong"},
+        {"Linh", "Phạm Thùy Linh"},
+        {"Minh", "Minh Khuê Lê"},
+        {"Minh Khuê", "Minh Khuê Lê"},
+        {"Trang", "Minh Trang"},
+        {"Nguyễn", "Nguyễn Đức Trọng"},
+        {"Hà", "Trần Thanh Hà"},
+        {"vua lì đòn", "Trần Thanh Hà"} // Note: Multiple keys map to same value here
+    }},
+    {"ct", {
+        {"Bách", "Đức Bách"},
+        {"Chúi", "Văn A Chúi"},
+        {"Dũng", "Dũng Nguyễn"},
+        {"Huy", "Huy Hay Hot"},
+        {"Ho", "Huy Ho"},
+        {"Linh", "Linh Nguen"},
+        {"Nhung", "Trần Thị Hồng Nhung"},
+        {"Đình", "Đình Nguyên"}
+    }},
+    {"htbz", {
+        {"Bách", "Đức Bách"},
+        {"Dũng", "Tuấn Dũng"},
+        {"Dương", "Dương Ng"},
+        {"Lee", "Phong Lee"},
+        {"Linh", "Đoàn Nhật Linh"},
+        {"Minh", "Minh Vũ"},
+        {"Nguyễn", "My Nguyễn"},
+        {"Trần", "Trần Hiệp"}
+    }},
+    {"itb", {
+        {"Anh", "Phuong Anh"},
+        {"Bách", "Đức Bách"},
+        {"Dũng", "Tuấn Dũng"},
+        {"Giang", "Giang Uyên"},
+        {"Huong", "Le Thu Huong"},
+        {"Minh", "Minh Vũ"},
+        {"Nguyễn", "Nguyễn Đức Trọng"}
+    }},
+    {"kkn", {
+        {"Bao-Linh", "Bao-Linh Dong"},
+        {"Bách", "Đức Bách"},
+        {"Dũng", "Tuấn Dũng"},
+        {"Huyy", "Huyy Anh"}
+    }},
+    {"kkn_td", {
+        {"Bách", "Đức Bách"},
+        {"Dũng", "Tuấn Dũng"},
+        {"Huyy", "Huyy Anh"},
+        {"Thu", "Thu Trang"}
+    }},
+    {"qc", {
+        {"Bách", "Đức Bách"},
+        {"Dũng", "Tuấn Dũng"},
+        {"Hải", "Nguyễn Thu Hải"},
+        {"Kim Ánh", "Phạm Kim Ánh"},
+        {"Thu Trang", "Tô Thu Trang"},
+        {"Nguyet", "Nguyễn Nguyệt Ánh"}
+    }},
+    {"sgn", {
+        {"August", "August Tíu"},
+        {"Bách", "Đức Bách"},
+        {"Bánh", "Bánh Bòa"},
+        {"Dũng", "Tuấn Dũng"},
+        {"Minh", "Minh Vũ"},
+        {"Nam", "Nam Ho Nguyen Hoang"},
+        {"Ngoc Tuyen", "Le Ngoc Tuyen"},
+        {"Nguyễn", "Thảo Nguyễn"},
+        {"Tieu", "Quyen Tieu"},
+        {"Vĩnh", "Nguyễn Thành Vĩnh"}
+    }},
+    {"showbeat", { // NOTE: Using the LAST definition provided in your input for this key
+		{"Bách", "Đức Bách"},
+		{"Dũng", "Tuấn Dũng"},
+		{"Hân", "Hân Gia"},
+		{"Nhơn", "Đào Hửu Nhơn"},
+		{"Thanh", "Phạm Chí Thanh"},
+		{"Tung", "Tung Doan"}
+    }},
+    {"tt", {
+        {"Bách", "Đức Bách"},
+        {"Dũng", "Tuấn Dũng"},
+        {"Hoang", "Luu Viet Hoang"},
+        {"Huyền", "Nguyễn Huyền"},
+        {"Lệ", "Lệ Đỗ"},
+        {"Nguyễn", "Nguyễn Như Quỳnh"},
+        {"Phương", "Linh Phương"},
+        {"Thao Duyen", "Nguyen Thao Duyen"},
+        {"Trà My", "Phạm Lại Trà My"}
+    }},
+    {"tt_btg", {
+        {"An", "Nguyễn An"},
+        {"Dũng", "Tuấn Dũng"},
+        {"Không", "Nguyễn An"},
+        {"Không Còn Gì", "Nguyễn An"}, // Note: Multiple keys map to same value here
+        {"Minh", "Minh Vũ"}
+    }},
+    {"tt_bvw", {
+        {"Minh", "Minh Vũ"},
+        {"Quang", "Quang Hiếu"},
+        {"Đồng Tường", "Nguyễn Đồng Tường"}
+    }},
+    {"tt_cchn", {
+        {"Bách", "Đức Bách"},
+        {"Dũng", "Tuấn Dũng"},
+        {"Hiền", "Nguyễn Đức Hiền"},
+        {"Hoang", "Hoang Tuấn Anh"},
+        {"Minh", "Minh Trang"}
+    }},
+    {"tt_hh", {
+        {"Son", "Son Tung Nguyen"},
+        {"Trần", "Trần Hiệp"}
+    }},
+    {"tt_hlvn", {
+        {"Bách", "Đức Bách"},
+        {"Dũng", "Tuấn Dũng"},
+        {"Nguyễn", "Nguyễn Như Quỳnh"},
+        {"Phương", "Linh Phương"}
+    }},
+	{"tt_showbeat", {
+		{"Bách", "Đức Bách"},
+		{"Dũng", "Tuấn Dũng"},
+		{"Hồng", "Hà Lan Võ Hồng"},
+		{"Lệ", "Lệ Đỗ"},
+		{"Minh", "Minh Vũ"}
+	}}};
+	return map.at(pagename).contains(name) ? map.at(pagename).at(name) : name;
+};
+Messages from_json(const json& js, const std::string& pagename)
 {
 	Messages rs{};
 	std::string sname = js.at("user");
-	rs.btv = btv.contains(sname) ? btv.at(sname) : sname;
+	rs.btv = clean_name(sname, pagename);
+	rs.btv = btv.contains(rs.btv) ? btv.at(rs.btv) : rs.btv;
 	try
 	{
 		rs.content = js.at("content");
-		std::ranges::replace(rs.content, '\n', ' ');
-		std::ranges::replace(rs.content, '\t', '	');
-		std::ranges::replace(rs.content, '\r', ' ');
-		rs.links = get_links(rs.content);
+		rs.content = std::regex_replace(rs.content, std::regex{"[\t\n\r]"}, " ");
+		rs.content = std::regex_replace(rs.content, std::regex{"[\\t\\n\\r]"}, " ");
+
+		//// if this messages is reply to other message
+		//auto find_tng = rs.content.find("---Tin nhắn gốc");
+		//if (find_tng != std::string::npos)
+		//	rs.content.insert(find_tng, " ");
 	}
 	catch (json::out_of_range& err) {};
+	rs.links = get_links(rs.content);
 	//
 	try 
 	{
 		for(auto& p: js.at("media"))
 		{
 			if (p["type"] == "image")
-				rs.photo.push_back(media_code(p.at("src")));
+			{
+				if (p.at("src").get<std::string>().starts_with("https://scontent"))
+				{
+					rs.photo.push_back(media_code(p.at("src")));
+				};
+			};
 			if (p["type"] == "video")
 				rs.video.push_back(media_code(p.at("src")));
 		};
@@ -175,9 +349,28 @@ Messages from_json(const json& js)
 	catch (json::out_of_range& err) {};
 	try
 	{
-		if (js.at("react").size() > 0) rs.has_react = true;
+		const auto& reacts = js.at("reactions").at("types");
+		if (std::ranges::find(reacts, "👍") != reacts.end())
+			rs.has_like = true;
+
 	}
 	catch (json::out_of_range& err) {};
+	
+	if (!js.at("originalRepliedMessagePreview").is_null())
+	{
+		rs.reply = std::string{js.at("originalRepliedMessagePreview")}.substr(17);
+		rs.reply = std::regex_replace(rs.reply, std::regex{"[\\t\\n\\r]"}, " ");
+
+		auto s = rs.reply.find("\"");
+		int count {0};
+		while (s != std::string::npos)
+		{
+			count++;
+			s = rs.reply.find("\"", s+1);
+		};
+		if (count % 2 != 0) rs.reply += "\"";
+	};
+	if (js.at("timestamp") != "N/A") rs.timestamp = js.at("timestamp");
 	//
 	return rs;
 }
@@ -317,16 +510,16 @@ void print_to_tsv(const std::string& title, std::ostream& f,
 			f << i << FS;
 		f << '\n';
 	};
-	print({"time","page","btv","content","photo","video","link",
-			"cap source","kdv","kq","cmt"});
 
 	for (auto& m: mv)
 	{
-		print({"", page_map.at(page_name), 
+		print({m.timestamp, page_map.at(page_name), 
 				m.btv, m.content,
 				vec_to_string(m.photo),
 				vec_to_string(m.video),
-				vec_to_string(m.links)});
+				vec_to_string(m.links),
+				std::to_string(static_cast<int>(m.has_like)),
+				m.reply});
 	}
 }
 

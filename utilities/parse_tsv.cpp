@@ -5,34 +5,36 @@
 #include <algorithm>
 std::vector<std::string> parse_line(const std::string_view& line)
 {
-	static auto add_quote_if_newline = [](std::string& str)
-	{
-		if (str.find('\n') != std::string::npos) str = "\"" + str + "\"";
-	};
 	std::vector<std::string> rs;
 	std::string field;
-	bool in_quote;
+	bool has_quote;
 
 	for (auto i {0}; i != line.size(); i++)
 	{
 		char c = line[i];
 
+		if (c == '\t')
+		{
+			if (has_quote)
+			{
+				if (field.find_first_not_of('"') % 2 == 0) field = '"' + field;
+				if ((field.size() - field.find_last_not_of('"') - 1) % 2 == 0) field = field + '"';
+			}
+			rs.push_back(field);
+			field.clear();
+			has_quote = false;
+			continue;
+		};
 		if (c == '"')
 		{
-			field += '"';
-			if (i + 1 <= line.size() && line[i+1] == '"')
+			has_quote = true;
+			if (i + 1 < line.size() && line[i+1] == '"')
 			{
 				field += '"';
 				i++;
 			}
-			else in_quote = !in_quote;
 		}
-		else if (c == '\t' && !in_quote)
-		{
-			rs.push_back(field);
-			field.clear();
-		}
-		else field += c;
+		field += c;
 	};
 	rs.push_back(field);
 	return rs;
@@ -51,7 +53,8 @@ std::vector<std::vector<std::string>> parse_tsv(const std::string& path)
 		const std::string smartQuotes[] = {"“", "”"};  // Unicode smart quotes
 		for (const std::string& sq : smartQuotes) {
 			size_t pos;
-			while ((pos = line.find(sq)) != std::string::npos) {
+			while ((pos = line.find(sq)) != std::string::npos)
+			{
 				line.replace(pos, sq.length(), "\"\"");
 			}
 		}

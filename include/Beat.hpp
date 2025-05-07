@@ -13,14 +13,14 @@ typedef std::map<std::string,int> pageid;
 struct Messages
 {
 	vec_str photo, video, links;
-	std::string btv, content;
-	bool has_react {false};
+	std::string btv, content, reply, kdv, timestamp;
+	bool has_like {false};
 };
-Messages from_json(const nlohmann::json&);
+Messages from_json(const nlohmann::json&, const std::string& pagename);
 
 using messvec = std::vector<Messages>;
 
-messvec vec_from_input(const nlohmann::json&);
+messvec vec_from_input(const nlohmann::json&, const std::string& pagename);
 messvec& only_reactions(messvec&);
 messvec& join_messages(messvec&, const std::string&);
 

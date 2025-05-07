@@ -1,10 +1,8 @@
-#include "parse_tsv.hpp"
 #include <iostream>
 #include <regex>
 #include <array>
 #include <fstream>
 #include <filesystem>
-#include <format>
 #include <algorithm>
 std::array plc
 {
@@ -77,15 +75,6 @@ std::array plc
 	"Tôn giáo",
 	"Đối tác khách hàng",
 };
-
-std::array btv
-{
-	"Phong", "Bách", "Dũng",
-};
-std::array stt
-{
-	"Duyệt", "Sửa/ xóa bài - cơ bản", "Sửa/ xóa bài - nâng cao" 
-};
 int main(int argc, const char** argv)
 {
 	if (argc != 2) 
@@ -99,61 +88,34 @@ int main(int argc, const char** argv)
 	f.open(argv[1]);
 	if (!f.is_open()) std::cout << "file doesn't exist\n";
 	
-	auto data {parse_tsv(argv[1])};
-	
-	bool need_fill_date = false;
-	std::string_view current_date;
-	std::string_view current_page;
-	for (auto& rows: data)
+	std::string line;
+	std::regex plc_rg {"([^\\s]+)\\s*$"};
+	while (std::getline(f,line))
 	{
-		auto& rdate {rows[0]};
-		const auto& rpage {rows[1]};
-		if (current_page != rpage) current_date = "";
-		current_page = rpage;
-
-		if (!rdate.empty()) current_date = rdate;
-		else rdate = current_date;
-
-		auto& rbtv {rows[8]};
-		auto& rstt {rows[9]};
-		auto& rplc {rows[11]};
-
-		//if (!rbtv.empty()) rbtv = btv.at(std::stoi(rbtv)); 
-		if (rbtv.empty()) rbtv = btv.at(1); 
-		else rbtv = btv.at(std::stoi(rbtv)); 
-
-		if (!rstt.empty()) rstt = stt.at(std::stoi(rstt));
-		else rstt = stt.front();
-		if (!rplc.empty())
+		std::smatch rm;
+		std::regex_search(line, rm, plc_rg);
+		std::string match {rm.str(1)};
+		if (std::regex_match(match, std::regex{"^[\\d,]*$"}))
 		{
-			if (rplc.find(",") != std::string::npos)
+			std::cerr << match << '\n';
+			if (match.find(",") != std::string::npos)
 			{
-				std::stringstream ss{rplc};
-				rplc.clear();
-				rplc += "\"";
+				std::stringstream ss{match};
+				match.clear();
+				match += "\"";
 				std::string p;
 				while (std::getline(ss, p, ','))
 				{
-					rplc += "\"\"" + std::string{plc.at(std::stoi(p))} + "\"\"" + ",";
+					match += "\"\"" + std::string{plc.at(std::stoi(p))} + "\"\"" + ",";
 				};
-				rplc = rplc.substr(0, rplc.size() - 1);
-				rplc += "\"";
+				match = match.substr(0, match.size() - 1);
+				match += "\"";
 			}
-			else rplc = plc.at(std::stoi(rplc)); 
+			else match = plc.at(std::stoi(match)); 
+			std::cerr << match << '\n';
+			std::cerr << "=======================\n";
+			line.replace(line.rfind(rm.str(1)), rm.str(1).size(), match);
 		};
-
-		for (const auto& field: rows)
-			std::cout << field << '\t';
-		std::cout << '\n';
+		std::cout << line << '\n';
 	};
-	// a tab followed by any number of digit, and any number of whitespace till the end of line
-	//std::regex plc_rg {"\t(\\d+)$"};
-	//if (std::regex_search(line,rm,plc_rg))
-	//{
-	//	std::cout << rm.str() << '\n';
-	//	line.replace(line.find_last_of(rm.str(1)) - rm.str(1).size() + 1, 
-	//			rm.str(1).size(), 
-	//			std::format("\"{}\"", plc.at(std::stoi(rm.str(1)))));
-	//};
-		
 };
