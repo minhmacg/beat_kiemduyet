@@ -47,7 +47,8 @@ int main(int argc, const char** argv)
 	for (int i {0}; i != rs.size(); i++)
 	{
 		std::cerr << "Processing " << i + 1 << "/" << size << std::endl;
-		const auto user = json[i]["user"].get<std::string>();
+		auto user = rs[i]["user"];
+		if (user.is_null() || user == "User N/A") rs[i]["user"] = "";
 		if (argc == 4 && std::string_view{argv[3]} == "--filter")
 			if (user == "Tuấn Dũng" || user == "Đức Bách" || user == "Minh Vũ")
 			{

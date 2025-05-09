@@ -90,62 +90,93 @@ int main(int argc, const char** argv)
 {
 	if (argc != 2) 
 	{
-		std::cout << "bad input\n";
+		std::cout << "Usage: clean_after <inputfile>\n";
 		return -1;
 	};
 
 	std::filesystem::path file {argv[1]};
-	std::ifstream f;
-	f.open(argv[1]);
-	if (!f.is_open()) std::cout << "file doesn't exist\n";
-	
-	auto data {parse_tsv(argv[1])};
-	
-	bool need_fill_date = false;
-	std::string_view current_date;
-	std::string_view current_page;
-	for (auto& rows: data)
+	if (!std::filesystem::exists(file))
 	{
-		auto& rdate {rows[0]};
-		const auto& rpage {rows[1]};
-		if (current_page != rpage) current_date = "";
-		current_page = rpage;
+		std::cerr << "file doesn't exists\n";
+		return 0;
+	};
 
-		if (!rdate.empty()) current_date = rdate;
-		else rdate = current_date;
-
-		auto& rbtv {rows[8]};
-		auto& rstt {rows[9]};
-		auto& rplc {rows[11]};
-
-		//if (!rbtv.empty()) rbtv = btv.at(std::stoi(rbtv)); 
-		if (rbtv.empty()) rbtv = btv.at(1); 
-		else rbtv = btv.at(std::stoi(rbtv)); 
-
-		if (!rstt.empty()) rstt = stt.at(std::stoi(rstt));
-		else rstt = stt.front();
-		if (!rplc.empty())
+	std::ifstream f{file};
+	
+	std::string line;
+	while (std::getline(f,line))
+	{
+		auto fields {line | std::views::split('\t') | std::ranges::to<std::vector<std::string>>()};
+		if (fields.size() != 11) continue;
+		fields[0] = fields[0].substr(0,fields[0].find(' '));
+		auto& rstatus = fields[8];
+		auto& rplc = fields[10];
+		
+		if (!std::ranges::all_of(rstatus, [](auto c){return isdigit(c);})) std::cerr << "invalid status code " << rstatus << std::endl;
+		else if (!rstatus.empty()) rstatus = stt.at(std::stoi(rstatus));
+		else rstatus = "Duyệt";
+		
+		if (!std::ranges::all_of(rplc, [](auto c){return isdigit(c) || c == ',';})) std::cerr << "invalid plc code " << rplc << std::endl;
+		else if (!rplc.empty())
 		{
-			if (rplc.find(",") != std::string::npos)
-			{
-				std::stringstream ss{rplc};
-				rplc.clear();
-				rplc += "\"";
-				std::string p;
-				while (std::getline(ss, p, ','))
-				{
-					rplc += "\"\"" + std::string{plc.at(std::stoi(p))} + "\"\"" + ",";
-				};
-				rplc = rplc.substr(0, rplc.size() - 1);
-				rplc += "\"";
-			}
-			else rplc = plc.at(std::stoi(rplc)); 
+			std::string rs{'"'};
+			for(auto found_plc: rplc | std::views::split(',') | std::views::transform([=](auto&& p){;return plc.at(std::stoi(std::string{p.begin(), p.end()}));}))
+				rs += "\"\"" + std::string{found_plc} + "\"\"" + ",";
+			rs.pop_back();
+			rs += '"';
+			rplc = rs;
 		};
-
-		for (const auto& field: rows)
-			std::cout << field << '\t';
+		for (const auto& f: fields)
+			std::cout << f << '\t';
 		std::cout << '\n';
 	};
+	//auto data {parse_tsv(argv[1])};
+	//
+	//bool need_fill_date = false;
+	//std::string_view current_date;
+	//std::string_view current_page;
+	//for (auto& rows: data)
+	//{
+	//	auto& rdate {rows[0]};
+	//	const auto& rpage {rows[1]};
+	//	if (current_page != rpage) current_date = "";
+	//	current_page = rpage;
+
+	//	if (!rdate.empty()) current_date = rdate;
+	//	else rdate = current_date;
+
+	//	auto& rbtv {rows[8]};
+	//	auto& rstt {rows[9]};
+	//	auto& rplc {rows[11]};
+
+	//	//if (!rbtv.empty()) rbtv = btv.at(std::stoi(rbtv)); 
+	//	if (rbtv.empty()) rbtv = btv.at(1); 
+	//	else if (std::ranges::all_of(rbtv, [](auto c){return std::isdigit(c);})) rbtv = btv.at(std::stoi(rbtv)); 
+
+	//	if (!rstt.empty()) rstt = stt.at(std::stoi(rstt));
+	//	else rstt = stt.front();
+	//	if (!rplc.empty())
+	//	{
+	//		if (rplc.find(",") != std::string::npos)
+	//		{
+	//			std::stringstream ss{rplc};
+	//			rplc.clear();
+	//			rplc += "\"";
+	//			std::string p;
+	//			while (std::getline(ss, p, ','))
+	//			{
+	//				rplc += "\"\"" + std::string{plc.at(std::stoi(p))} + "\"\"" + ",";
+	//			};
+	//			rplc = rplc.substr(0, rplc.size() - 1);
+	//			rplc += "\"";
+	//		}
+	//		else rplc = plc.at(std::stoi(rplc)); 
+	//	};
+
+	//	for (const auto& field: rows)
+	//		std::cout << field << '\t';
+	//	std::cout << '\n';
+	//};
 	// a tab followed by any number of digit, and any number of whitespace till the end of line
 	//std::regex plc_rg {"\t(\\d+)$"};
 	//if (std::regex_search(line,rm,plc_rg))

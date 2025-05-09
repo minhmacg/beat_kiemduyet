@@ -148,9 +148,22 @@ messvec vec_from_input(const json& js, const std::string& pagename)
 	};
 	rs.erase(std::remove_if(rs.begin(), rs.end(), [](auto&& m)
 			{
-				return !m.photo.empty() && std::ranges::find_if(m.photo, [](auto&& p){return p.find("https://scontent") == std::string::npos;}) == m.photo.end();
+				return (!m.photo.empty() && std::ranges::find_if(m.photo, [](auto&& p){return p.find("https://scontent") == std::string::npos;}) == m.photo.end())
+						|| (!m.has_like && (m.btv != "Tuấn Dũng" || m.btv != "Minh Vũ"));
 			}), rs.end());
-	join_messages(rs);
+	std::ifstream f {"kd_per_page.json"};
+	nlohmann::json kdv_per_page;
+	f >> kdv_per_page;
+
+	std::string kdv;
+	for (const auto& [kd,page]: kdv_per_page.items())
+	{
+		if (std::find(page.begin(), page.end(), page_map.at(pagename)) != page.end()) kdv = kd;
+	};
+	//Assign kdv to all messages
+	
+	for (auto& m: rs) m.kdv = kdv;
+	//join_messages(rs, pagename);
 	return rs;
 }
 
@@ -160,10 +173,12 @@ std::string clean_name(const std::string& name, const std::string& pagename)
    {"beatvn", {
         {"Bách", "Đức Bách"},
         {"Chinh", "Chinh Nguyệt"},
+        {"Thịnh", "Nguyễn Tuấn Thịnh"},
+        {"Long", "Nguyễn Hoàng Long"},
         {"Dũng", "Tuấn Dũng"},
         {"Hoang", "Luu Viet Hoang"},
         {"Hồng Dương", "Hồng Dương Lê"},
-        {"Thần đồng nhạc chế", "Hồng Dương Lê"}, // Note: Multiple keys map to same value here
+        {"Thần đồng nhạc chế", "Hồng Dương Lê"},
         {"Lệ", "Lệ Đỗ"},
         {"Quân", "Hồng Quân"},
         {"Phươn", "Linh Phương"},
@@ -197,7 +212,7 @@ std::string clean_name(const std::string& name, const std::string& pagename)
         {"Bách", "Đức Bách"},
         {"Chúi", "Văn A Chúi"},
         {"Dũng", "Dũng Nguyễn"},
-        {"Huy", "Huy Hay Hot"},
+        {"Huy", "Huy Ho"},
         {"Ho", "Huy Ho"},
         {"Linh", "Linh Nguen"},
         {"Nhung", "Trần Thị Hồng Nhung"},
@@ -225,6 +240,7 @@ std::string clean_name(const std::string& name, const std::string& pagename)
     {"kkn", {
         {"Bao-Linh", "Bao-Linh Dong"},
         {"Bách", "Đức Bách"},
+        {"eel", "Vũ Thu Trang"},
         {"Dũng", "Tuấn Dũng"},
         {"Huyy", "Huyy Anh"}
     }},
@@ -323,6 +339,8 @@ Messages from_json(const json& js, const std::string& pagename)
 		rs.content = std::regex_replace(rs.content, std::regex{"[\t\n\r]"}, " ");
 		rs.content = std::regex_replace(rs.content, std::regex{"[\\t\\n\\r]"}, " ");
 
+		if (std::ranges::count(rs.content, '\"') % 2 != 0) rs.content += '\"';
+
 		//// if this messages is reply to other message
 		//auto find_tng = rs.content.find("---Tin nhắn gốc");
 		//if (find_tng != std::string::npos)
@@ -377,77 +395,61 @@ Messages from_json(const json& js, const std::string& pagename)
 
 
 
-//messvec& join_messages(messvec& m, const std::string& pn)
-//{
-//	auto it = m.begin();
-//	if (pn == "tiktok")
-//	{
-//		while (it + 1 != m.end())
-//		{
-//			auto it2 = it + 1;
-//			std::time_t dt = it->time - it2->time;
-//			if (it->btv == it2->btv && dt < 50000)
-//			{
-//				if (it->link.empty() && !it2->link.empty())
-//				{
-//					it2->content = it->content;
-//					it = m.erase(it);
-//				}
-//				else if (!it->link.empty() && it2->link.empty())
-//				{
-//					it2->link = it->link;
-//					it = m.erase(it);
-//				}
-//				else ++it;
-//			}
-//			else ++it;
-//		}
-//	}
-//	else
-//	{
-//		while (it + 1 != m.end())
-//		{
-//			auto it2 = it + 1;
-//			std::time_t dt = it->time - it2->time;
-//			if (!it->reactions.empty() && !it2->reactions.empty()
-//				&& it->btv == it2->btv 
-//				&& dt < 50000)
-//			{
-//				if (it->content.empty() && !it2->content.empty())
-//				{
-//					if (!it->photo.empty() && it2->photo.empty())
-//					{
-//						it2->photo = it->photo;
-//						it = m.erase(it);
-//					}
-//					else if (!it->video.empty() && it2->video.empty())
-//					{
-//						it2->video = it->video;
-//						it = m.erase(it);
-//					}
-//					else ++it;
-//				}
-//				else if (!it->content.empty() && it2->content.empty())
-//				{
-//					if (it->photo.empty() && !it2->photo.empty())
-//					{
-//						it2->content = it->content;
-//						it = m.erase(it);
-//					}
-//					else if (it->video.empty() && !it2->video.empty())
-//					{
-//						it2->content = it->content;
-//						it = m.erase(it);
-//					}
-//					else ++it;
-//				}
-//				else ++it;
-//			}
-//			else ++it;
-//		};
-//	}
-//	return m;
-//}
+messvec& join_messages(messvec& m, const std::string& pn)
+{
+	std::vector<std::size_t> to_erase {};
+	constexpr int WINDOW = 3;
+	for (auto i {0}; i != m.size(); i++)
+	{
+		auto& current_message = m.at(i);
+		int count {1};
+		while (count <= WINDOW && i + count != m.size() && current_message.content.empty() && current_message.video.empty() && current_message.photo.empty() && current_message.links.empty())
+		{
+			const auto& examining_message {m.at(i + count)};
+			if (examining_message.timestamp != current_message.timestamp) break;
+			if (current_message.btv.empty() || examining_message.btv.empty() || examining_message.btv == current_message.btv)
+			{
+				if (current_message.btv.empty() && !examining_message.btv.empty())
+					current_message.btv = examining_message.btv;
+				if (current_message.content.empty() && !examining_message.content.empty())
+					current_message.content = examining_message.content;
+				if (current_message.photo.empty() && !examining_message.photo.empty())
+					current_message.photo = examining_message.photo;
+				if (current_message.video.empty() && !examining_message.video.empty())
+					current_message.video = examining_message.video;
+				if (current_message.links.empty() && !examining_message.links.empty())
+					current_message.links = examining_message.links;
+
+				to_erase.emplace_back(i + count);
+			};
+			count++;
+		}
+		count = 1;
+		while (count <= WINDOW && i - count != 0 && current_message.content.empty() && current_message.video.empty() && current_message.photo.empty() && current_message.links.empty())
+		{
+			const auto& examining_message {m.at(i - count)};
+			if (examining_message.timestamp != current_message.timestamp) break;
+			if (current_message.btv.empty() || examining_message.btv.empty() || examining_message.btv == current_message.btv)
+			{
+				if (current_message.btv.empty() && !examining_message.btv.empty())
+					current_message.btv = examining_message.btv;
+				if (current_message.content.empty() && !examining_message.content.empty())
+					current_message.content = examining_message.content;
+				if (current_message.photo.empty() && !examining_message.photo.empty())
+					current_message.photo = examining_message.photo;
+				if (current_message.video.empty() && !examining_message.video.empty())
+					current_message.video = examining_message.video;
+				if (current_message.links.empty() && !examining_message.links.empty())
+					current_message.links = examining_message.links;
+
+				to_erase.emplace_back(i + count);
+			};
+			count++;
+		}
+	};
+	for (auto i: to_erase | std::views::reverse) m.erase(m.begin() + i);
+	return m;
+}
 
 //std::tuple<std::string, std::string> get_censor_rs(const auto& reactions)
 //{
@@ -518,8 +520,7 @@ void print_to_tsv(const std::string& title, std::ostream& f,
 				vec_to_string(m.photo),
 				vec_to_string(m.video),
 				vec_to_string(m.links),
-				std::to_string(static_cast<int>(m.has_like)),
-				m.reply});
+				m.kdv});
 	}
 }
 
