@@ -26,7 +26,7 @@ int main(int argc, const char** argv)
 			f << i << FS;
 		f << '\n';
 	};
-	print(std::cout, {"time","pagename","username","content","photo","video","link","kdv","kq","cmt"});
+	print(std::cout, {"time","pagename","username","content","photo","video","link","kdv","kq","cmt","reply"});
 	for (auto& file: std::filesystem::directory_iterator{json_path})
 	{
 		if (!std::filesystem::is_regular_file(file)) continue;
@@ -48,7 +48,13 @@ int main(int argc, const char** argv)
 		
 		//std::cout << output_fmt << '\n';
 
-		messvec rs {vec_from_input(input_data,page_name)};
+		try
+		{
+			messvec rs {vec_from_input(input_data,page_name)};
+			std::cerr << "Cooking " << page_name << '\n';
+			print_to_tsv(output_fmt, std::cout, rs, page_name);
+		}
+		catch (std::out_of_range& e) {std::cerr << e.what() << " " << page_name;};
 		//for (auto& m: rs)
 		//{
 		//	std::cout << page_name << '\t' 
@@ -58,8 +64,6 @@ int main(int argc, const char** argv)
 		//		<< "--------------------\n";
 		//};
 
-		std::cerr << "Cooking " << page_name << '\n';
-		print_to_tsv(output_fmt, std::cout, rs, page_name);
 		
 		//Messages m = from_json(rs[0]);
 		//std::cout << rs << "\n";

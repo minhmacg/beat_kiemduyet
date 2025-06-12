@@ -1,6 +1,7 @@
 #include <Beat.hpp>
 #include <regex>
 #include <iostream>
+#include <print>
 
 using nlohmann::json;
 
@@ -79,21 +80,25 @@ messvec& join_messages(messvec& m)
 		auto& m1 {m[i]};
 		if (!m1.content.empty())
 		{
+			std::string btv = m1.btv;
 			int c {1};
 			while (c < 3)
 			{
 				if (i - c >= 0)
 				{
 					auto& m2 {m[i-c]};
-					if ((m2.btv == m1.btv) && m2.content.empty())
+					btv = !m2.btv.empty() ? m2.btv : btv; 
+					if (m2.timestamp == m1.timestamp && (m2.btv == m1.btv || m1.btv == "" || m2.btv == "") && m2.content.empty())
 					{
 						if(!m2.photo.empty())
 						{
+							m1.btv = btv;
 							m1.photo = std::move(m2.photo);
 							break;
 						};
 						if (!m2.video.empty())
 						{
+							m1.btv = btv;
 							m1.video = std::move(m2.video);
 							break;
 						};
@@ -102,15 +107,18 @@ messvec& join_messages(messvec& m)
 				if (i + c < m.size())
 				{
 					auto& m2 {m[i+c]};
-					if ((m2.btv == m1.btv) && m2.content.empty())
+					btv = !m2.btv.empty() ? m2.btv : btv; 
+					if (m2.timestamp == m1.timestamp && (m2.btv == m1.btv || m1.btv == "" || m2.btv == "") && m2.content.empty())
 					{
 						if(!m2.photo.empty())
 						{
+							m1.btv = btv;
 							m1.photo = std::move(m2.photo);
 							break;
 						};
 						if (!m2.video.empty())
 						{
+							m1.btv = btv;
 							m1.video = std::move(m2.video);
 							break;
 						};
@@ -122,7 +130,7 @@ messvec& join_messages(messvec& m)
 	};
 	m.erase(std::remove_if(m.begin(), m.end(), [](const auto& msg)
 			{
-				return msg.content.empty() && msg.photo.empty() && msg.video.empty();
+				return msg.btv.empty() || (msg.content.empty() && msg.photo.empty() && msg.video.empty() && msg.links.empty());
 			}), m.end());
 
 	return m;
@@ -148,8 +156,7 @@ messvec vec_from_input(const json& js, const std::string& pagename)
 	};
 	rs.erase(std::remove_if(rs.begin(), rs.end(), [](auto&& m)
 			{
-				return (!m.photo.empty() && std::ranges::find_if(m.photo, [](auto&& p){return p.find("https://scontent") == std::string::npos;}) == m.photo.end())
-						|| (!m.has_like && (m.btv != "Tuấn Dũng" || m.btv != "Minh Vũ"));
+				return !m.has_like && m.btv != "Tuấn Dũng" && m.btv != "Minh Vũ" && m.links.empty();
 			}), rs.end());
 	std::ifstream f {"kd_per_page.json"};
 	nlohmann::json kdv_per_page;
@@ -157,13 +164,12 @@ messvec vec_from_input(const json& js, const std::string& pagename)
 
 	std::string kdv;
 	for (const auto& [kd,page]: kdv_per_page.items())
-	{
-		if (std::find(page.begin(), page.end(), page_map.at(pagename)) != page.end()) kdv = kd;
-	};
+		if (page_map.contains(pagename))
+			if (std::find(page.begin(), page.end(), page_map.at(pagename)) != page.end()) kdv = kd;
 	//Assign kdv to all messages
 	
 	for (auto& m: rs) m.kdv = kdv;
-	//join_messages(rs, pagename);
+	join_messages(rs);
 	return rs;
 }
 
@@ -174,11 +180,16 @@ std::string clean_name(const std::string& name, const std::string& pagename)
         {"Bách", "Đức Bách"},
         {"Chinh", "Chinh Nguyệt"},
         {"Thịnh", "Nguyễn Tuấn Thịnh"},
+        {"VHM Tuấn Thịnh", "Nguyễn Tuấn Thịnh"},
         {"Long", "Nguyễn Hoàng Long"},
+        {"Huyền", "Nguyễn Thị Ngọc Huyền"},
+        {"Triệu Tử Long", "Nguyễn Hoàng Long"},
         {"Dũng", "Tuấn Dũng"},
         {"Hoang", "Luu Viet Hoang"},
         {"Hồng Dương", "Hồng Dương Lê"},
+        {"Nguyễn", "Nguyễn Đức Trọng"},
         {"Thần đồng nhạc chế", "Hồng Dương Lê"},
+        {"Dương lê", "Lê Thị Thùy Dương"},
         {"Lệ", "Lệ Đỗ"},
         {"Quân", "Hồng Quân"},
         {"Phươn", "Linh Phương"},
@@ -191,6 +202,7 @@ std::string clean_name(const std::string& name, const std::string& pagename)
         {"Hằng", "Minh Hằng"},
         {"Nguyễn", "Nguyễn Đức Hậu"},
         {"Viet Anh", "Nguyen Viet Anh"},
+        {"Uyên", "Nguyễn Thu Uyên"},
         {"Đức", "Minh Đức"}
     }},
     {"cchn", {
@@ -198,6 +210,7 @@ std::string clean_name(const std::string& name, const std::string& pagename)
         {"Dinh Zin", "Tuan Dinh Zin"},
         {"Dũng", "Tuấn Dũng"},
         {"Giang", "Giang Uyên"},
+        {"Uyên", "Giang Uyên"},
         {"Hoang", "Hoang Tuấn Anh"},
         {"Huong", "Le Thu Huong"},
         {"Linh", "Phạm Thùy Linh"},
@@ -205,6 +218,7 @@ std::string clean_name(const std::string& name, const std::string& pagename)
         {"Minh Khuê", "Minh Khuê Lê"},
         {"Trang", "Minh Trang"},
         {"Nguyễn", "Nguyễn Đức Trọng"},
+        {"Hiếu", "Phạm Công Hiếu"},
         {"Hà", "Trần Thanh Hà"},
         {"vua lì đòn", "Trần Thanh Hà"} // Note: Multiple keys map to same value here
     }},
@@ -214,25 +228,17 @@ std::string clean_name(const std::string& name, const std::string& pagename)
         {"Dũng", "Dũng Nguyễn"},
         {"Huy", "Huy Ho"},
         {"Ho", "Huy Ho"},
+        {"Huy Hay Hot", "Huy Ho"},
         {"Linh", "Linh Nguen"},
         {"Nhung", "Trần Thị Hồng Nhung"},
         {"Đình", "Đình Nguyên"}
-    }},
-    {"htbz", {
-        {"Bách", "Đức Bách"},
-        {"Dũng", "Tuấn Dũng"},
-        {"Dương", "Dương Ng"},
-        {"Lee", "Phong Lee"},
-        {"Linh", "Đoàn Nhật Linh"},
-        {"Minh", "Minh Vũ"},
-        {"Nguyễn", "My Nguyễn"},
-        {"Trần", "Trần Hiệp"}
     }},
     {"itb", {
         {"Anh", "Phuong Anh"},
         {"Bách", "Đức Bách"},
         {"Dũng", "Tuấn Dũng"},
         {"Giang", "Giang Uyên"},
+        {"Uyên", "Giang Uyên"},
         {"Huong", "Le Thu Huong"},
         {"Minh", "Minh Vũ"},
         {"Nguyễn", "Nguyễn Đức Trọng"}
@@ -240,7 +246,7 @@ std::string clean_name(const std::string& name, const std::string& pagename)
     {"kkn", {
         {"Bao-Linh", "Bao-Linh Dong"},
         {"Bách", "Đức Bách"},
-        {"eel", "Vũ Thu Trang"},
+        {"eel", "Vũ Thị Thu Trang"},
         {"Dũng", "Tuấn Dũng"},
         {"Huyy", "Huyy Anh"}
     }},
@@ -251,6 +257,14 @@ std::string clean_name(const std::string& name, const std::string& pagename)
         {"Thu", "Thu Trang"}
     }},
     {"qc", {
+        {"Bách", "Đức Bách"},
+        {"Dũng", "Tuấn Dũng"},
+        {"Hải", "Nguyễn Thu Hải"},
+        {"Kim Ánh", "Phạm Kim Ánh"},
+        {"Thu Trang", "Tô Thu Trang"},
+        {"Nguyet", "Nguyễn Nguyệt Ánh"}
+    }},
+    {"qc2", {
         {"Bách", "Đức Bách"},
         {"Dũng", "Tuấn Dũng"},
         {"Hải", "Nguyễn Thu Hải"},
@@ -276,6 +290,7 @@ std::string clean_name(const std::string& name, const std::string& pagename)
 		{"Hân", "Hân Gia"},
 		{"Nhơn", "Đào Hửu Nhơn"},
 		{"Thanh", "Phạm Chí Thanh"},
+        {"Lệ", "Lệ Đỗ"},
 		{"Tung", "Tung Doan"}
     }},
     {"tt", {
@@ -314,9 +329,18 @@ std::string clean_name(const std::string& name, const std::string& pagename)
     }},
     {"tt_hlvn", {
         {"Bách", "Đức Bách"},
-        {"Dũng", "Tuấn Dũng"},
         {"Nguyễn", "Nguyễn Như Quỳnh"},
-        {"Phương", "Linh Phương"}
+        {"Phương", "Linh Phương"},
+        {"Dũng", "Ngô Tiến Dũng"}
+    }},
+    {"tt_htbz", {
+        {"Bách", "Đức Bách"},
+        {"Dương", "Dương Ng"},
+        {"Lee", "Phong Lee"},
+        {"Linh", "Đoàn Nhật Linh"},
+        {"Minh", "Minh Vũ"},
+        {"Nguyễn", "My Nguyễn"},
+        {"Trần", "Trần Hiệp"}
     }},
 	{"tt_showbeat", {
 		{"Bách", "Đức Bách"},
@@ -325,7 +349,8 @@ std::string clean_name(const std::string& name, const std::string& pagename)
 		{"Lệ", "Lệ Đỗ"},
 		{"Minh", "Minh Vũ"}
 	}}};
-	return map.at(pagename).contains(name) ? map.at(pagename).at(name) : name;
+	if (map.contains(pagename)) return map.at(pagename).contains(name) ? map.at(pagename).at(name) : name;
+	else return name;
 };
 Messages from_json(const json& js, const std::string& pagename)
 {
@@ -340,6 +365,16 @@ Messages from_json(const json& js, const std::string& pagename)
 		rs.content = std::regex_replace(rs.content, std::regex{"[\\t\\n\\r]"}, " ");
 
 		if (std::ranges::count(rs.content, '\"') % 2 != 0) rs.content += '\"';
+		rs.links = get_links(rs.content);
+		if (std::regex_match(rs.content, std::regex{"^http[^\\s]*$"}))
+		{
+			if (std::regex_match(rs.content, std::regex{"^https://drive.*"}))
+			{
+				rs.video.push_back(rs.content);
+				rs.links.clear();
+			};
+			rs.content = "";
+		};
 
 		//// if this messages is reply to other message
 		//auto find_tng = rs.content.find("---Tin nhắn gốc");
@@ -347,7 +382,6 @@ Messages from_json(const json& js, const std::string& pagename)
 		//	rs.content.insert(find_tng, " ");
 	}
 	catch (json::out_of_range& err) {};
-	rs.links = get_links(rs.content);
 	//
 	try 
 	{
@@ -368,9 +402,8 @@ Messages from_json(const json& js, const std::string& pagename)
 	try
 	{
 		const auto& reacts = js.at("reactions").at("types");
-		if (std::ranges::find(reacts, "👍") != reacts.end())
-			rs.has_like = true;
-
+		//if (std::find(reacts.begin(), reacts.end(), "👍") != reacts.end()) rs.has_like = true;
+		if (reacts.size() > 0) rs.has_like = true;
 	}
 	catch (json::out_of_range& err) {};
 	
@@ -515,12 +548,13 @@ void print_to_tsv(const std::string& title, std::ostream& f,
 
 	for (auto& m: mv)
 	{
-		print({m.timestamp, page_map.at(page_name), 
+		print({m.timestamp, page_map.contains(page_name) ? page_map.at(page_name) : page_name, 
 				m.btv, m.content,
 				vec_to_string(m.photo),
 				vec_to_string(m.video),
 				vec_to_string(m.links),
-				m.kdv});
+				m.kdv,
+				m.reply});
 	}
 }
 
