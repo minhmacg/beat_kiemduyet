@@ -42,6 +42,7 @@ open my $in, "<:encoding(UTF-8)", $file or die "Can't open file: $!";
 
 while (<$in>) {
   chomp;
+  $_ =~ s/\r//g;
   my @fields = split /\t/;
   push @fields, "" while @fields < 11;
   next if @fields > 11;
@@ -54,10 +55,10 @@ while (<$in>) {
   # Status mapping
   if ($rstatus =~ /^\d+$/) {
     $fields[8] = $stt[$rstatus] // "Duyệt";
-  } elsif ($rstatus eq '') {
+  } elsif ($rstatus eq '' || $rstatus eq 'L') {
     $fields[8] = "Duyệt";
   } else {
-    warn "invalid status code: $rstatus\n";
+    warn "invalid status code $rstatus\n";
   }
 
   # Policy code mapping
@@ -72,8 +73,6 @@ while (<$in>) {
       }
     }
     $fields[10] = '"' . join(",", @labels) . '"';
-  } elsif ($rplc ne '') {
-    warn "invalid plc code: $rplc\n";
   }
 
   say join("\t", @fields);

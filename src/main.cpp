@@ -26,7 +26,7 @@ int main(int argc, const char** argv)
 			f << i << FS;
 		f << '\n';
 	};
-	print(std::cout, {"time","pagename","username","content","photo","video","link","kdv","kq","cmt","reply"});
+	print(std::cout, {"time","pagename","username","content","photo","video","link","kdv","kq","cmt"});
 	for (auto& file: std::filesystem::directory_iterator{json_path})
 	{
 		if (!std::filesystem::is_regular_file(file)) continue;

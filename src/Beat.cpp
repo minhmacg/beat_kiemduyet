@@ -22,7 +22,7 @@ inline std::string media_code(const std::string& vs)
 	return rs;
 }
 
-vec_str get_links(const std::string& input)
+vec_str get_links(std::string& input)
 {
 	vec_str rs;
 	std::regex rg(R"(https?://[^\s'",<>{}[\]()\\|^]+)");
@@ -34,6 +34,10 @@ vec_str get_links(const std::string& input)
         rs.push_back(it->str());
         ++it; 
     }
+	for (auto& str: rs)
+	{
+		input.erase(input.find(str), str.length());
+	};
 	return rs;
 };
 std::string vec_to_string(const vec_str& v)
@@ -154,10 +158,10 @@ messvec vec_from_input(const json& js, const std::string& pagename)
 		if (!i.timestamp.empty()) current_time = i.timestamp;
 		else if (!current_time.empty()) i.timestamp = current_time;
 	};
-	rs.erase(std::remove_if(rs.begin(), rs.end(), [](auto&& m)
-			{
-				return !m.has_like && m.btv != "Tuấn Dũng" && m.btv != "Minh Vũ" && m.links.empty();
-			}), rs.end());
+	//rs.erase(std::remove_if(rs.begin(), rs.end(), [](auto&& m)
+	//		{
+	//			return !m.has_like && m.btv != "Tuấn Dũng" && m.btv != "Minh Vũ" && m.links.empty();
+	//		}), rs.end());
 	std::ifstream f {"kd_per_page.json"};
 	nlohmann::json kdv_per_page;
 	f >> kdv_per_page;
@@ -430,60 +434,68 @@ Messages from_json(const json& js, const std::string& pagename)
 
 messvec& join_messages(messvec& m, const std::string& pn)
 {
-	std::vector<std::size_t> to_erase {};
 	constexpr int WINDOW = 3;
-	for (auto i {0}; i != m.size(); i++)
-	{
-		auto& current_message = m.at(i);
-		int count {1};
-		while (count <= WINDOW && i + count != m.size() && current_message.content.empty() && current_message.video.empty() && current_message.photo.empty() && current_message.links.empty())
-		{
-			const auto& examining_message {m.at(i + count)};
-			if (examining_message.timestamp != current_message.timestamp) break;
-			if (current_message.btv.empty() || examining_message.btv.empty() || examining_message.btv == current_message.btv)
-			{
-				if (current_message.btv.empty() && !examining_message.btv.empty())
-					current_message.btv = examining_message.btv;
-				if (current_message.content.empty() && !examining_message.content.empty())
-					current_message.content = examining_message.content;
-				if (current_message.photo.empty() && !examining_message.photo.empty())
-					current_message.photo = examining_message.photo;
-				if (current_message.video.empty() && !examining_message.video.empty())
-					current_message.video = examining_message.video;
-				if (current_message.links.empty() && !examining_message.links.empty())
-					current_message.links = examining_message.links;
+	std::vector<std::size_t> to_erase;
 
-				to_erase.emplace_back(i + count);
-			};
-			count++;
-		}
-		count = 1;
-		while (count <= WINDOW && i - count != 0 && current_message.content.empty() && current_message.video.empty() && current_message.photo.empty() && current_message.links.empty())
-		{
-			const auto& examining_message {m.at(i - count)};
-			if (examining_message.timestamp != current_message.timestamp) break;
-			if (current_message.btv.empty() || examining_message.btv.empty() || examining_message.btv == current_message.btv)
-			{
-				if (current_message.btv.empty() && !examining_message.btv.empty())
-					current_message.btv = examining_message.btv;
-				if (current_message.content.empty() && !examining_message.content.empty())
-					current_message.content = examining_message.content;
-				if (current_message.photo.empty() && !examining_message.photo.empty())
-					current_message.photo = examining_message.photo;
-				if (current_message.video.empty() && !examining_message.video.empty())
-					current_message.video = examining_message.video;
-				if (current_message.links.empty() && !examining_message.links.empty())
-					current_message.links = examining_message.links;
-
-				to_erase.emplace_back(i + count);
-			};
-			count++;
-		}
+	auto is_fillable = [](const auto& msg) {
+		return msg.content.empty() || msg.photo.empty() || msg.video.empty() || msg.links.empty();
 	};
-	for (auto i: to_erase | std::views::reverse) m.erase(m.begin() + i);
+
+	auto count_filled_fields = [](const auto& msg) {
+		int count = 0;
+		if (!msg.content.empty()) count++;
+		if (!msg.photo.empty()) count++;
+		if (!msg.video.empty()) count++;
+		if (!msg.links.empty()) count++;
+		return count;
+	};
+
+	for (std::size_t i = 0; i < m.size(); ++i)
+	{
+		auto& current = m[i];
+		if (!is_fillable(current)) continue;
+
+		for (int offset = -WINDOW; offset <= WINDOW; ++offset)
+		{
+			if (offset == 0) continue;
+
+			std::size_t j = i + offset;
+			if (offset < 0 && i < static_cast<std::size_t>(-offset)) continue;
+			if (j >= m.size()) continue;
+
+			auto& other = m[j];
+			if (other.timestamp != current.timestamp) continue;
+			if (!current.btv.empty() && !other.btv.empty() && current.btv != other.btv) continue;
+
+			if (count_filled_fields(other) == 1)
+			{
+				if (current.content.empty() && !other.content.empty())
+					current.content = std::move(other.content);
+				else if (current.photo.empty() && !other.photo.empty())
+					current.photo = std::move(other.photo);
+				else if (current.video.empty() && !other.video.empty())
+					current.video = std::move(other.video);
+				else if (current.links.empty() && !other.links.empty())
+					current.links = std::move(other.links);
+				else
+					continue; // Nothing merged
+
+				if (current.btv.empty() && !other.btv.empty())
+					current.btv = std::move(other.btv);
+
+				to_erase.push_back(j);
+			}
+		}
+	}
+
+	// Sort and erase in reverse to prevent index shifting
+	std::ranges::sort(to_erase);
+	std::ranges::unique(to_erase);
+	for (auto it = to_erase.rbegin(); it != to_erase.rend(); ++it)
+		m.erase(m.begin() + *it);
+
 	return m;
 }
-
 //std::tuple<std::string, std::string> get_censor_rs(const auto& reactions)
 //{
 //	auto validkdv = [](const std::string& name)
@@ -554,7 +566,7 @@ void print_to_tsv(const std::string& title, std::ostream& f,
 				vec_to_string(m.video),
 				vec_to_string(m.links),
 				m.kdv,
-				m.reply});
+				m.has_like ? "L" : ""});
 	}
 }
 
