@@ -411,7 +411,7 @@ Messages from_json(const json& js, const std::string& pagename)
 	}
 	catch (json::out_of_range& err) {};
 	
-	if (!js.at("originalRepliedMessagePreview").is_null())
+	if (!js.at("originalRepliedMessagePreview").is_null() && js.at("originalRepliedMessagePreview").get<std::string>() != "")
 	{
 		rs.reply = std::string{js.at("originalRepliedMessagePreview")}.substr(17);
 		rs.reply = std::regex_replace(rs.reply, std::regex{"[\\t\\n\\r]"}, " ");

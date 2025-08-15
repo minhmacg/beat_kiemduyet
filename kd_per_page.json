@@ -3,27 +3,31 @@
 		"FP - Beatvn",
 		"TT - BEATVN",
 		"FP - Showbeat",
-		"TT - HelloVietnam",
-		"FP - Chuyện của Hà Nội",
 		"FP - Inside the Box",
 		"FP - Nhà văn hoá",
 		"TT - Nhà văn hoá",
-		"FP - Cao Thủ",
-		"Quảng cáo",
-		"FP - BEAT Network"
+		"Quảng cáo"
 	],
 	"Vũ" : [
-		"FP - BEAT NOW",
 		"TT - Kiến Không Ngủ",
+		"FP - Chuyện của Hà Nội",
 		"FP - Kiến không ngủ",
+		"TT - Inside the Box",
+		"FP - BEAT Network"
+	],
+	"Hưng" : [
 		"TT - Showbeat",
+		"FP - BEAT NOW",
 		"TT - Beat the game",
 		"TT - Beat viral world",
 		"TT - Chuyện của Hà Nội",
-		"FP - Sài Gòn nghenn",
 		"FP - Kiến không ngủ Trending",
 		"TT - Hóng to the Heart",
-		"TT - Hành tinh beatz",
-		"TT - Inside the Box"
+		"TT - Hành tinh beatz"
+	],
+	"Dương" : [
+		"TT - HelloVietnam",
+		"FP - Sài Gòn nghenn",
+		"FP - Cao Thủ"
 	]
 }

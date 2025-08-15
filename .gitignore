@@ -1,4 +1,5 @@
 .git
+*.tsv
 build/
 medias/
 cleaned_medias/
