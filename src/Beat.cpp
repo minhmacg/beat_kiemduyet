@@ -158,10 +158,10 @@ messvec vec_from_input(const json& js, const std::string& pagename)
 		if (!i.timestamp.empty()) current_time = i.timestamp;
 		else if (!current_time.empty()) i.timestamp = current_time;
 	};
-	//rs.erase(std::remove_if(rs.begin(), rs.end(), [](auto&& m)
-	//		{
-	//			return !m.has_like && m.btv != "Tuấn Dũng" && m.btv != "Minh Vũ" && m.links.empty();
-	//		}), rs.end());
+	rs.erase(std::remove_if(rs.begin(), rs.end(), [](auto&& m)
+			{
+				return !m.has_like && m.btv != "Tuấn Dũng" && m.btv != "Minh Vũ" && m.links.empty();
+			}), rs.end());
 	std::ifstream f {"kd_per_page.json"};
 	nlohmann::json kdv_per_page;
 	f >> kdv_per_page;
@@ -406,8 +406,7 @@ Messages from_json(const json& js, const std::string& pagename)
 	try
 	{
 		const auto& reacts = js.at("reactions").at("types");
-		//if (std::find(reacts.begin(), reacts.end(), "👍") != reacts.end()) rs.has_like = true;
-		if (reacts.size() > 0) rs.has_like = true;
+		if (std::find(reacts.begin(), reacts.end(), "👍") != reacts.end()) rs.has_like = true;
 	}
 	catch (json::out_of_range& err) {};
 	
