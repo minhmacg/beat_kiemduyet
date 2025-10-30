@@ -60,7 +60,8 @@ my $json = do {
     my $json_text = <$f>;
     close $f;
     
-    $json_text =~ s/\\u([0-9a-f]{4})/chr(hex($1))/ge;
+	# Fix facebook byte encoding
+    $json_text =~ s/\\u00([0-9a-f]{2})/chr(hex($1))/ge;
     
     decode_json($json_text);
 };
