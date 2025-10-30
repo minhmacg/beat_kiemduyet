@@ -77,7 +77,13 @@ foreach my $m (@{$json->{messages}})
 	{
 		if ($m->{content} eq $m->{share}->{link}) {$m->{content} = ""};
 	};
-	if ($m->{content}) { $m->{content} =~ s/\n/ /g;};
+
+	if ($m->{content} && $m->{content} ne "")
+	{
+		$m->{content} =~ s/\n|\t|\r/ /g;
+		$m->{content} =~ s/“|”/"/g;
+		$m->{content} .= "\"" if ($m->{content} =~ /"/g % 2 != 0);
+	};
 	my $current_btv_status = $btv_status{$m->{sender_name}};
 	if ($current_btv_status->{posting} &&
 		$current_btv_status->{start_timestamp} - $m->{timestamp_ms} > 30000)

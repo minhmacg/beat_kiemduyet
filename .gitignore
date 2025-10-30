@@ -8,6 +8,7 @@ inbox/
 done/
 links/
 output_tsv/
+output/
 notdone/
 json_src/
 raw_json/
