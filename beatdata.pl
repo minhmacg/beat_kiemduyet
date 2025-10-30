@@ -60,8 +60,11 @@ my $json = do {
     my $json_text = <$f>;
     close $f;
     
+    $json_text =~ s/\\u([0-9a-f]{4})/chr(hex($1))/ge;
+    
     decode_json($json_text);
 };
+
 my %btv_status;
 
 foreach my $p (@{$json->{participants}}) {$btv_status{$p->{name}} = {posting => 0, start_timestamp => 0, anchor => undef};};

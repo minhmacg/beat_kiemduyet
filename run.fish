@@ -26,12 +26,13 @@ set -l names 1gkdfbchuyencuahanoi \
   sanphamxkiemduyet
 
 rm json_src/*
-for dir in (ls -1 $_flag_d/your_facebook_activity/messages/inbox/)
+for dir in (ls -1 $_flag_d)
 	set -l pagename (echo $dir | perl -pe "s/_\d+\$//")
 	if contains $pagename $names
 		echo $pagename
-		jq . $_flag_d/your_facebook_activity/messages/inbox/$dir/message_1.json \
-			| iconv -f UTF-8 -t ISO-8859-1 > json_src/$pagename.json
+		cp $_flag_d/$dir/message_1.json json_src/$pagename.json
+		#jq . $_flag_d/your_facebook_activity/messages/inbox/$dir/message_1.json \
+			#	| iconv -f UTF-8 -t ISO-8859-1 > json_src/$pagename.json
 	end
 end
 
