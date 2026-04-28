@@ -42,7 +42,7 @@ def main():
       response = (
           service.files()
           .list(
-              q="mimeType != 'application/vnd.google-apps.folder' and trashed = false and createdTime > '2025-09-02T00:00:00'",
+              q="mimeType != 'application/vnd.google-apps.folder' and trashed = false and createdTime > '2025-12-01T00:00:00'",
               spaces="drive",
               fields="nextPageToken, files(id, name, createdTime, webViewLink)",
               pageToken=page_token,

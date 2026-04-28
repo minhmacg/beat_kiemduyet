@@ -14,10 +14,11 @@ my %pagename = (
 	chotchanbeatnetwork => "FB - Beat Network",
 	chotchanshowbeat1g => "FB - SHOWBEAT",
 	chottiktokhtbz => "TT - HÀNH TINH BEATZ",
-	finaltiktokbeatvn2025 => "TT - BEATVN",
+	finaltiktokbeatvn2026 => "TT - BEATVN",
 	kdbeatnow => "FP - BEAT NOW",
 	kdfbbeatvnfinal => "FB - Beatvn",
-	kdfbcaothu => "FB - Cao thủ",
+	kdfbcaothu => "FB - Cao Thủ",
+	kdfbnghemoi => "FB - Nghề Mới",
 	kdfbsaigonnghenn => "FB - Sài Gòn Nghenn",
 	kdkienkhongngu => "FB - Kiến Không Ngủ",
 	kdkienkhongngutrending => "FB - Kiến Không Ngủ Trending",
@@ -81,8 +82,9 @@ foreach my $m (@{$json->{messages}})
 	if ($m->{content} && $m->{content} ne "")
 	{
 		$m->{content} =~ s/\n|\t|\r/ /g;
-		$m->{content} =~ s/“|”/"/g;
-		$m->{content} .= "\"" if ($m->{content} =~ /"/g % 2 != 0);
+		#$m->{content} =~ s/“|”/"/g;
+		#$m->{content} =~ s/^"+|"+$//g;
+		$m->{content} = '"' . $m->{content} . '"';
 	};
 	my $current_btv_status = $btv_status{$m->{sender_name}};
 	if ($current_btv_status->{posting} &&
@@ -91,7 +93,15 @@ foreach my $m (@{$json->{messages}})
 		$current_btv_status->{posting} = 0;
 	};
 
-	if (!($m->{reactions} && grep {$_->{reaction} =~ /👍/} @{$m->{reactions}})) {next;};
+	next if (!$m->{reactions});
+	for my $react (@{$m->{reactions}})
+	{
+		if ($react->{reaction} eq "👍")
+		{
+			$m->{kdv} = $react->{actor};
+		};
+	};
+	next if (!$m->{kdv});
 	# If not already posting, start
 	if (!$current_btv_status->{posting})
 	{
@@ -117,13 +127,13 @@ foreach my $m (@{$json->{messages}})
 			else {$anchor->{videos} = $m->{videos}; };
 			$consumed = 1;
 		};
-		if (!$anchor->{link} && $m->{share}) { $anchor->{link} = $m->{share}->{link}; $consumed = 1;};
+		if (!$anchor->{share} && $m->{share}) { $anchor->{share} = $m->{share}; $consumed = 1;};
 
 		if ($consumed) {$m->{consumed} = 1};
 	};
 };
 
-my @filtered_messages = grep { !$_->{consumed} } @{$json->{messages}};
+my @filtered_messages = reverse (grep { !$_->{consumed} } @{$json->{messages}});
 
 sub string_from_media
 {
@@ -147,14 +157,13 @@ foreach my $m (@filtered_messages)
 {
 	my $time = strftime("%d/%m/%y", localtime($m->{timestamp_ms}/1000));
 	my $page = $ARGV[0] =~ s/(.*\/)?([^\/]+)\.json/$2/r;
-	my $kdv = $kdperpage{$page};
 	$page = $pagename{$page};
 	my $kq = $m->{reactions} ? "1" : "";
 
 	my $photos = string_from_media($m->{photos});
 	my $videos = string_from_media($m->{videos});
 
-	for ($time, $page, $m->{sender_name}, $m->{content}, $photos, $videos, $m->{link}, $kdv, $kq)
+	for ($time, $page, $m->{sender_name}, $m->{content}, $photos, $videos, $m->{share}->{link}, $m->{kdv}, $kq)
 	{
 		my $field = defined $_ ? $_ : "";
 		print $field . "\t";

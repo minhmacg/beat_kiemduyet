@@ -1,0 +1,981 @@
+Building index of media files in /mnt/c/Users/Admin/Downloads/facebook-minhacg-18_11_2025-bkUBUb0h/your_facebook_activity/messages/inbox/...
+Found 1208 unique media filenames
+Parsing TSV file...
+Found 6798 media files referenced in TSV
+
+Copying files...
+  Skip (exists): 1009850224662153.jpg
+  Skip (exists): 1010589677917211.jpg
+  Copied: 1024793946445449.jpg
+  Skip (exists): 1031559895763577.jpg
+  Skip (exists): 1033242692276502.jpg
+  Copied: 1037982055120406.mp4
+  Copied: 1040297941532486.png
+  Skip (exists): 1048248274038960.jpg
+  Skip (exists): 1057273126446488.jpg
+  Copied: 1080178620742914.jpg
+  Skip (exists): 1089180869838878.jpg
+  Skip (exists): 1092117709502695.jpg
+  Copied: 1099995435380387.png
+  Copied: 1105626368314658.jpg
+  Copied: 1107264237940311.jpg
+  Copied: 1108936627977682.png
+  Copied: 1111277834414482.jpg
+  Skip (exists): 1112860250927178.jpg
+  Copied: 1113991784141387.jpg
+  Skip (exists): 1118436840095245.jpg
+  Skip (exists): 1120981899832885.jpg
+  Skip (exists): 1121745673111998.jpg
+  Copied: 1122236623454233.mp4
+  Copied: 1122537033002084.jpg
+  Skip (exists): 1124190659579416.png
+  Skip (exists): 1125682099715511.jpg
+  Copied: 1126537919466100.mp4
+  Skip (exists): 1128318775956451.jpg
+  Copied: 1129088442585369.jpg
+  Skip (exists): 1130324538866958.jpg
+  Copied: 1131665312477873.jpg
+  Copied: 1131845455395803.mp4
+  Skip (exists): 1135082702105895.jpg
+  Skip (exists): 1135326838589361.jpg
+  Copied: 1136119441840211.mp4
+  Copied: 1139636488289516.jpg
+  Skip (exists): 1139992564923106.jpg
+  Copied: 1141782311456120.png
+  Copied: 1142360764282426.mp4
+  Copied: 1142439084761430.jpg
+  Skip (exists): 1142841901372947.jpg
+  Copied: 1143250161276725.jpg
+  Skip (exists): 1144665754520679.jpg
+  Copied: 1144696801203078.jpg
+  Copied: 1146953437622221.mp4
+  Skip (exists): 1147136400879205.jpg
+  Skip (exists): 1147230354282730.jpg
+  Skip (exists): 1147808750898677.jpg
+  Skip (exists): 1149001874010780.jpg
+  Copied: 1149178076929626.jpg
+  Copied: 1149561840637171.png
+  Skip (exists): 1150536617199973.jpg
+  Skip (exists): 1150645290509631.jpg
+  Copied: 1151163680069976.jpg
+  Copied: 1151745687137892.jpg
+  Copied: 1154073966868697.jpg
+  Copied: 1154395413507782.png
+  Skip (exists): 1155029396605669.jpg
+  Copied: 1155200916700317.mp4
+  Skip (exists): 1156604229458957.jpg
+  Skip (exists): 1156854929960473.jpg
+  Skip (exists): 1157074352797986.jpg
+  Skip (exists): 1158120059763840.jpg
+  Copied: 1158218093086786.png
+  Skip (exists): 1158792153056412.jpg
+  Skip (exists): 1159166299712760.jpg
+  Copied: 1160740966236708.mp4
+  Skip (exists): 1161438755546445.jpg
+  Copied: 1162237339451365.png
+  Skip (exists): 1162802652582729.jpg
+  Copied: 1165123312351688.jpg
+  Skip (exists): 1165823705097749.jpg
+  Skip (exists): 1166547778370103.jpg
+  Skip (exists): 1167802088152136.jpg
+  Copied: 1167869281556386.jpg
+  Copied: 1167990925441984.mp4
+  Skip (exists): 1168033611519737.jpg
+  Skip (exists): 1169009944697573.jpg
+  Copied: 1169015968043061.jpg
+  Copied: 1169178098520159.jpg
+  Skip (exists): 1169300215159969.png
+  Copied: 1169766191920537.mp4
+  Copied: 1170338955230025.mp4
+  Copied: 1170592381177769.png
+  Copied: 1171148047844897.jpg
+  Skip (exists): 1173359578054853.jpg
+  Copied: 1174293347501825.png
+  Copied: 1174473530865024.png
+  Copied: 1175111828051768.jpg
+  Skip (exists): 1176137600741046.jpg
+  Skip (exists): 1177242270436056.jpg
+  Skip (exists): 1177462697921804.jpg
+  Skip (exists): 1178845023698480.jpg
+  Copied: 1179267793561409.mp4
+  Copied: 1179694873497663.jpg
+  Skip (exists): 1180239810107841.jpg
+  Copied: 1180571323474577.jpg
+  Skip (exists): 1181073200624594.jpg
+  Skip (exists): 1182057820233465.jpg
+  Skip (exists): 1183599697030850.jpg
+  Skip (exists): 1183739473719262.jpg
+  Copied: 1184022200309165.jpg
+  Skip (exists): 1185853113453226.jpg
+  Copied: 1186018046744380.jpg
+  Copied: 1187779383489688.jpg
+  Skip (exists): 1188239746539153.jpg
+  Skip (exists): 1189254879751377.jpg
+  Copied: 1191127599782533.jpg
+  Skip (exists): 1192315656182050.jpg
+  Copied: 1192709659439547.mp4
+  Skip (exists): 1194654259395514.jpg
+  Skip (exists): 1196098195748743.jpg
+  Skip (exists): 1197500252257584.jpg
+  Copied: 1198112622216713.mp4
+  Copied: 1200587975250188.jpg
+  Copied: 1200626198621988.mp4
+  Copied: 1202883671724615.jpg
+  Copied: 1203467318295032.png
+  Skip (exists): 1203684471610776.jpg
+  Copied: 1203850881621084.jpg
+  Skip (exists): 1207055927961007.jpg
+  Copied: 1209750337724305.jpg
+  Skip (exists): 1210116777696318.jpg
+  Copied: 1210204930980789.jpg
+  Copied: 1210738054446243.mp4
+  Skip (exists): 1210993564418450.jpg
+  Copied: 1212587737639659.png
+  Copied: 1213740587320579.png
+  Skip (exists): 1213800867330919.jpg
+  Copied: 1213951527270830.jpg
+  Skip (exists): 1216707926947150.jpg
+  Copied: 1220048206611972.mp4
+  Skip (exists): 1223264693192823.jpg
+  Copied: 1224062706200144.png
+  Skip (exists): 1225475826072394.png
+  Copied: 1233064045433468.mp4
+  Skip (exists): 1238347251453531.jpg
+  Skip (exists): 1240485981239024.jpg
+  Skip (exists): 1241636871135489.jpg
+  Skip (exists): 1241860764432316.jpg
+  Skip (exists): 1244459044104504.jpg
+  Skip (exists): 1246546263978530.jpg
+  Copied: 1254718823356972.jpg
+  Skip (exists): 1255401683075418.jpg
+  Skip (exists): 1264173661886690.jpg
+  Copied: 1265263482314720.jpg
+  Skip (exists): 1266394581991453.png
+  Skip (exists): 1266586842178769.png
+  Skip (exists): 1268616342052913.jpg
+  Copied: 1271185611442059.jpg
+  Skip (exists): 1275040884228187.jpg
+  Copied: 1276161027649747.mp4
+  Skip (exists): 1276453817500815.jpg
+  Skip (exists): 1278356880713294.png
+  Skip (exists): 1286681189895643.jpg
+  Copied: 1289142469682180.jpg
+  Skip (exists): 1290998346048845.jpg
+  Copied: 1292119846050856.png
+  Copied: 1293268056154646.mp4
+  Skip (exists): 1299600538584192.jpg
+  Copied: 1304924684735474.jpg
+  Copied: 1306694124477072.mp4
+  Skip (exists): 1308772317958818.jpg
+  Skip (exists): 1309609260847847.jpg
+  Copied: 1311215747702110.jpg
+  Copied: 1316039063538777.jpg
+  Copied: 1317870793472814.png
+  Skip (exists): 1319696582818306.jpg
+  Skip (exists): 1320398406059735.jpg
+  Skip (exists): 1320827259364147.jpg
+  Copied: 1323794375717944.jpg
+  Copied: 1324663599402642.jpg
+  Copied: 1327520895209943.jpg
+  Skip (exists): 1328966555181102.jpg
+  Copied: 1328995951816138.png
+  Copied: 1329693091710290.png
+  Skip (exists): 1330526928848881.jpg
+  Copied: 1332277421977755.mp4
+  Skip (exists): 1332793874712205.jpg
+  Skip (exists): 1333532757950481.jpg
+  Skip (exists): 1334339214462386.jpg
+  Copied: 1335245661059886.png
+  Copied: 1335499551043318.jpg
+  Skip (exists): 1337626547841248.jpg
+  Skip (exists): 1338315981376565.jpg
+  Skip (exists): 1338796120796743.jpg
+  Copied: 1338885667342979.png
+  Copied: 1338911967913784.jpg
+  Copied: 1340866170364807.jpg
+  Skip (exists): 1340891931063292.jpg
+  Skip (exists): 1341749577257852.png
+  Copied: 1341859697378828.png
+  Skip (exists): 1343247567593988.jpg
+  Copied: 1343397640795677.jpg
+  Copied: 1345189163922710.jpg
+  Copied: 1345716769791850.jpg
+  Copied: 1346208503966629.jpg
+  Copied: 1346215486973174.png
+  Copied: 1346370057130146.jpg
+  Skip (exists): 1346992907166128.jpg
+  Copied: 1347731616895760.jpg
+  Skip (exists): 1348419536152015.jpg
+  Copied: 1350180853498023.png
+  Skip (exists): 1350456256860515.jpg
+  Copied: 1350650643199210.jpg
+  Copied: 1351614693098841.png
+  Copied: 1351977899919732.mp4
+  Skip (exists): 1353165373488800.jpg
+  Skip (exists): 1355135756018745.jpg
+  Skip (exists): 1355424669403200.jpg
+  Skip (exists): 1355551292740736.jpg
+  Copied: 1355574096151121.jpg
+  Skip (exists): 1355661249386052.jpg
+  Skip (exists): 1355764805926677.jpg
+  Skip (exists): 1355815256085712.jpg
+  Skip (exists): 1357395542684881.jpg
+  Skip (exists): 1358586142560493.png
+  Skip (exists): 1358704929252995.jpg
+  Skip (exists): 1359163819281653.jpg
+  Copied: 1359356612256370.mp4
+  Skip (exists): 1359409889045617.jpg
+  Copied: 1359413599190642.png
+  Skip (exists): 1360041392231410.jpg
+  Copied: 1361442562134167.mp4
+  Copied: 1361629065342375.jpg
+  Copied: 1362216535553453.mp4
+  Copied: 1362288158597139.mp4
+  Copied: 1363688998810723.png
+  Copied: 1363708531881549.jpg
+  Skip (exists): 1363840085119799.jpg
+  Skip (exists): 1364311985044770.jpg
+  Copied: 1365437128560364.png
+  Skip (exists): 1367380135065856.jpg
+  Skip (exists): 1368250408008863.png
+  Skip (exists): 1368687921529060.jpg
+  Skip (exists): 1369716114697373.jpg
+  Skip (exists): 1370134558172859.jpg
+  Skip (exists): 1370249727818783.jpg
+  Skip (exists): 1370538244423747.jpg
+  Skip (exists): 1371422581298301.jpg
+  Copied: 1371727957950572.mp4
+  Copied: 1372342320908226.png
+  Skip (exists): 1372405304581638.jpg
+  Copied: 1372536344377933.jpg
+  Copied: 1373141281134258.jpg
+  Copied: 1373394944195128.jpg
+  Copied: 1374238460903594.png
+  Skip (exists): 1374325401147301.jpg
+  Skip (exists): 1374614464220890.jpg
+  Copied: 1374674137604203.mp4
+  Copied: 1375357690856450.jpg
+  Copied: 1375650107435339.mp4
+  Copied: 1376237777175271.jpg
+  Copied: 1376361714133069.jpg
+  Skip (exists): 1376558157145089.jpg
+  Copied: 1376972123770051.jpg
+  Skip (exists): 1377009063935926.jpg
+  Copied: 1377860953721996.jpg
+  Skip (exists): 1378356573646379.jpg
+  Skip (exists): 1379409587069712.jpg
+  Copied: 1380729126902050.jpg
+  Copied: 1381945293289730.jpg
+  Copied: 1383920979778412.png
+  Copied: 1385808003005235.jpg
+  Copied: 1387543332994855.jpg
+  Skip (exists): 1388000492933551.jpg
+  Skip (exists): 1390099312721670.jpg
+  Skip (exists): 1390611089443473.jpg
+  Skip (exists): 1391326859376858.jpg
+  Copied: 1391801312362730.jpg
+  Skip (exists): 1394653892320870.jpg
+  Skip (exists): 1394707675374763.png
+  Copied: 1396159692031319.jpg
+  Copied: 1396321122284233.jpg
+  Skip (exists): 1397321448670718.jpg
+  Copied: 1397459688564493.png
+  Skip (exists): 1400092701704697.jpg
+  Copied: 1401547611545142.jpg
+  Skip (exists): 1402118161413344.jpg
+  Copied: 1404244571260155.png
+  Skip (exists): 1405093711615684.jpg
+  Copied: 1409640777611389.jpg
+  Copied: 1410342070680204.mp4
+  Skip (exists): 1411099660386648.jpg
+  Skip (exists): 1411496277056722.jpg
+  Copied: 1415470610163794.png
+  Copied: 1416141000022525.png
+  Copied: 1417900843284602.jpg
+  Copied: 1420053679535857.mp4
+  Copied: 1420103999821468.jpg
+  Skip (exists): 1430793208378947.jpg
+  Skip (exists): 1434819754616240.jpg
+  Skip (exists): 1442434817306506.jpg
+  Skip (exists): 1442555980624881.jpg
+  Copied: 1455582325540153.jpg
+  Copied: 1458415788554787.jpg
+  Skip (exists): 1461867924902986.jpg
+  Skip (exists): 1462541898161263.jpg
+  Copied: 1463885821379819.mp4
+  Copied: 1466351218833168.png
+  Copied: 1468615060867457.png
+  Skip (exists): 1468622230898737.jpg
+  Skip (exists): 1471938513897135.jpg
+  Skip (exists): 1472816580490803.jpg
+  Skip (exists): 1475125580265136.jpg
+  Copied: 1481515226414060.mp4
+  Copied: 1483231867135790.png
+  Copied: 1485388012754279.jpg
+  Copied: 1485478349188985.mp4
+  Skip (exists): 1487869982500115.jpg
+  Copied: 1488918092385753.mp4
+  Skip (exists): 1489663802262086.jpg
+  Skip (exists): 1490253798901781.jpg
+  Skip (exists): 1490315935356480.jpg
+  Copied: 1494091685037767.mp4
+  Skip (exists): 1494408498519171.jpg
+  Skip (exists): 1495559842578953.jpg
+  Skip (exists): 1495668348337006.jpg
+  Copied: 1495782294982367.jpg
+  Copied: 1496864184912217.png
+  Skip (exists): 1496926064858598.jpg
+  Skip (exists): 1497133598284856.jpg
+  Skip (exists): 1498675698079897.jpg
+  Skip (exists): 1499115001365050.jpg
+  Copied: 1501554034468066.mp4
+  Skip (exists): 1502094794348674.jpg
+  Skip (exists): 1502808135178486.jpg
+  Skip (exists): 1502926927716020.jpg
+  Copied: 1505839350536804.mp4
+  Copied: 1507222637224822.mp4
+  Skip (exists): 1508599107016670.jpg
+  Skip (exists): 1508904746825588.jpg
+  Skip (exists): 1509300077868128.jpg
+  Copied: 1509870840104963.mp4
+  Skip (exists): 1510602803331268.jpg
+  Skip (exists): 1511487763396661.jpg
+  Skip (exists): 1512241363157038.jpg
+  Copied: 1512765916504302.jpg
+  Copied: 1515761496401295.png
+  Copied: 1516262622750163.jpg
+  Copied: 1518451642723731.mp4
+  Copied: 1519047079432045.png
+  Skip (exists): 1519139422613668.jpg
+  Copied: 1521359645653681.jpg
+  Copied: 1522297832148738.mp4
+  Skip (exists): 1522608895524712.jpg
+  Skip (exists): 1523104308886504.jpg
+  Skip (exists): 1523702352178670.jpg
+  Skip (exists): 1523964705319499.jpg
+  Copied: 1524739998590357.jpg
+  Skip (exists): 1526830548565833.jpg
+  Skip (exists): 1527148151929278.png
+  Skip (exists): 1527303835257669.jpg
+  Skip (exists): 1527494235067793.jpg
+  Skip (exists): 1528081851764607.jpg
+  Skip (exists): 1530047541569779.jpg
+  Skip (exists): 1530144248187732.jpg
+  Copied: 1531994137999503.mp4
+  Skip (exists): 1534222304442827.jpg
+  Copied: 1535343154444518.mp4
+  Copied: 1537933810733916.mp4
+  Copied: 1538523554003815.jpg
+  Skip (exists): 1539799857064558.jpg
+  Copied: 1543995326779015.mp4
+  Skip (exists): 1544617219903040.jpg
+  Copied: 1544968873483902.jpg
+  Copied: 1545392110040216.png
+  Copied: 1545416966585501.jpg
+  Copied: 1547126663143435.jpg
+  Skip (exists): 1547201503134782.png
+  Skip (exists): 1547296166304678.jpg
+  Copied: 1550912185915958.jpg
+  Skip (exists): 1551975279158600.jpg
+  Skip (exists): 1555589555468453.jpg
+  Copied: 1555874592264173.jpg
+  Copied: 1556149405568246.jpg
+  Skip (exists): 1557875942060230.jpg
+  Skip (exists): 1559005781769967.jpg
+  Copied: 1560501825131839.png
+  Copied: 1561107701687456.mp4
+  Skip (exists): 1561158508399078.jpg
+  Skip (exists): 1561249691728385.png
+  Copied: 1561329241546892.mp4
+  Skip (exists): 1569939937695777.jpg
+  Skip (exists): 1570229637503132.mp4
+  Copied: 1571969827311049.png
+  Copied: 1573194473859113.mp4
+  Skip (exists): 1576416453713043.jpg
+  Skip (exists): 1578010966529426.png
+  Skip (exists): 1578803356449004.jpg
+  Skip (exists): 1579213569750867.jpg
+  Copied: 1579963473420015.jpg
+  Skip (exists): 1580264456475569.jpg
+  Skip (exists): 1581218896626336.jpg
+  Copied: 1581464006319697.jpg
+  Copied: 1582872403066133.jpg
+  Copied: 1583299483030708.jpg
+  Copied: 1588262075957880.jpg
+  Copied: 1588923428789083.mp4
+  Skip (exists): 1590205308807566.jpg
+  Skip (exists): 1591357165332278.jpg
+  Copied: 1592944725414156.jpg
+  Skip (exists): 1593032965220296.jpg
+  Copied: 1594150161951191.jpg
+  Skip (exists): 1598363558004686.jpg
+  Skip (exists): 1600866557940674.jpg
+  Copied: 1609578833338398.jpg
+  Skip (exists): 1610568396984549.jpg
+  Skip (exists): 1612388220132499.jpg
+  Skip (exists): 1613442552972731.jpg
+  Copied: 1616472552669899.jpg
+  Skip (exists): 1617488739663699.jpg
+  Copied: 1618804069098909.mp4
+  Copied: 1620222296024174.jpg
+  Copied: 1620893982109358.jpg
+  Skip (exists): 1624188529385806.jpg
+  Copied: 1642210813822011.jpg
+  Copied: 1646017209895202.jpg
+  Copied: 1647789826604221.jpg
+  Skip (exists): 1648723463144254.jpg
+  Copied: 1652283912397904.jpg
+  Skip (exists): 1653877849171206.jpg
+  Copied: 1659077522164199.mp4
+  Copied: 1685256825783020.png
+  Skip (exists): 1694597808184940.jpg
+  Skip (exists): 1699233997700990.jpg
+  Skip (exists): 1706438963358027.jpg
+  Copied: 1713458222655039.jpg
+  Skip (exists): 1721080405799762.jpg
+  Copied: 1725993548093003.mp4
+  Skip (exists): 1729656157727966.jpg
+  Skip (exists): 1731742577509173.jpg
+  Skip (exists): 1736115857084683.jpg
+  Copied: 1736668843686516.mp4
+  Copied: 1740276836638500.png
+  Copied: 1742052059806775.mp4
+  Copied: 1744701896187816.jpg
+  Skip (exists): 1749474279093176.jpg
+  Copied: 1750081958867543.jpg
+  Skip (exists): 1751632085545592.png
+  Skip (exists): 1752877505374030.jpg
+  Skip (exists): 1753306205380740.jpg
+  Skip (exists): 1759426934706312.jpg
+  Skip (exists): 1759945114720339.jpg
+  Skip (exists): 1760253784508972.jpg
+  Skip (exists): 1761669191004830.jpg
+  Skip (exists): 1763832624244368.jpg
+  Skip (exists): 1765854740794255.png
+  Skip (exists): 1766166444041783.jpg
+  Copied: 1766216664084808.jpg
+  Skip (exists): 1766978277341116.png
+  Skip (exists): 1770584867092768.jpg
+  Copied: 1772789887444636.jpg
+  Skip (exists): 1776297283051470.jpg
+  Skip (exists): 1780039292677289.jpg
+  Copied: 1783351105702109.jpg
+  Skip (exists): 1791459035026576.jpg
+  Copied: 1792189641501117.jpg
+  Skip (exists): 1792244142166194.jpg
+  Copied: 1794614707887518.jpg
+  Skip (exists): 1799447470695293.jpg
+  Skip (exists): 1800198390631646.jpg
+  Copied: 1806538399990286.mp4
+  Skip (exists): 1813704202591344.jpg
+  Copied: 1818140032139194.jpg
+  Copied: 1821000068776387.mp4
+  Copied: 1824189301546892.png
+  Skip (exists): 1825515188354260.jpg
+  Copied: 1826147994773989.jpg
+  Copied: 1828086134734577.jpg
+  Copied: 1832002104353516.png
+  Skip (exists): 1833540537337481.jpg
+  Skip (exists): 1851959862871912.jpg
+  Skip (exists): 1862306914365945.jpg
+  Copied: 1862680954458303.jpg
+  Copied: 1862941624609603.jpg
+  Skip (exists): 1863818677588498.jpg
+  Copied: 1865207297425398.jpg
+  Skip (exists): 1865791127343132.jpg
+  Copied: 1865887624301798.mp4
+  Skip (exists): 1868952580680426.jpg
+  Copied: 1869242456998815.mp4
+  Copied: 1870057373641022.png
+  Skip (exists): 1870124757207014.jpg
+  Skip (exists): 1875656613388292.jpg
+  Skip (exists): 1877329709520959.png
+  Copied: 1877938969736633.png
+  Copied: 1879619836290446.mp4
+  Skip (exists): 1880042226729508.jpg
+  Copied: 1880622289477997.jpg
+  Skip (exists): 1887082202162070.jpg
+  Skip (exists): 1888795575315497.jpg
+  Copied: 1889462788649794.jpg
+  Skip (exists): 1889600351669086.jpg
+  Skip (exists): 1895413501390421.jpg
+  Copied: 1895668667970484.jpg
+  Copied: 1897038560850171.jpg
+  Skip (exists): 1900250043859758.jpg
+  Copied: 1901210444137402.png
+  Copied: 1905919073604184.mp4
+  Copied: 1908228053064903.mp4
+  Skip (exists): 1911070866187649.jpg
+  Skip (exists): 1912857556293474.jpg
+  Skip (exists): 1913734609180028.jpg
+  Skip (exists): 1917244725808624.png
+  Copied: 1920069562186894.jpg
+  Skip (exists): 1920382212235207.png
+  Copied: 1923006231976631.png
+  Copied: 1925339054996112.png
+  Skip (exists): 1925673241347766.jpg
+  Skip (exists): 1927994411082156.jpg
+  Copied: 1929924601268053.mp4
+  Copied: 1930082684236774.mp4
+  Skip (exists): 1931145231081358.jpg
+  Skip (exists): 1931475290915939.jpg
+  Copied: 1932724567654422.png
+  Copied: 1934919317443770.jpg
+  Skip (exists): 1935018183727693.jpg
+  Copied: 1938731340097242.mp4
+  Skip (exists): 1942310406330614.jpg
+  Copied: 1945513042609723.jpg
+  Copied: 1946741836194344.mp4
+  Skip (exists): 1954758938413248.jpg
+  Skip (exists): 1957314708475341.jpg
+  Copied: 1963023047600647.png
+  Skip (exists): 1965632360671874.jpg
+  Skip (exists): 1969079930302820.jpg
+  Copied: 1974925906406956.png
+  Copied: 1986136658896748.jpg
+  Skip (exists): 2001114644066818.jpg
+  Skip (exists): 2005922623565482.jpg
+  Copied: 2007324220046504.jpg
+  Skip (exists): 2009164696591248.jpg
+  Copied: 2012900372840815.mp4
+  Skip (exists): 2012905026153221.jpg
+  Copied: 2015121069282628.jpg
+  Skip (exists): 2017469059099527.jpg
+  Copied: 2017581442352284.mp4
+  Copied: 2020395255479720.mp4
+  Copied: 2020665945401504.png
+  Skip (exists): 2023444494862159.jpg
+  Skip (exists): 2023870091486379.png
+  Copied: 2025142768339165.jpg
+  Skip (exists): 2028320611249698.png
+  Copied: 2028402411341927.mp4
+  Copied: 2031791530919759.mp4
+  Skip (exists): 2033402627432887.jpg
+  Copied: 2034546074005328.jpg
+  Skip (exists): 2035042187242898.jpg
+  Skip (exists): 2046523136094157.jpg
+  Skip (exists): 2046733012793518.jpg
+  Skip (exists): 2047322519442235.jpg
+  Skip (exists): 2051731462309107.jpg
+  Copied: 2053280448761285.jpg
+  Skip (exists): 2055624708535316.jpg
+  Skip (exists): 2055761038594738.jpg
+  Skip (exists): 2061822467688111.jpg
+  Skip (exists): 2066783930821810.jpg
+  Skip (exists): 2066954680712823.jpg
+  Skip (exists): 2067708153766518.jpg
+  Copied: 2069188307247567.png
+  Copied: 2075075529896602.jpg
+  Copied: 2075587756602287.jpg
+  Skip (exists): 2077479406357678.jpg
+  Copied: 2092135514653934.png
+  Skip (exists): 2097647861064853.png
+  Skip (exists): 2098863807589552.jpg
+  Skip (exists): 2107470603393003.jpg
+  Skip (exists): 2108257099917097.jpg
+  Copied: 2112546199553670.mp4
+  Copied: 2112940389616752.png
+  Copied: 2120423728493393.mp4
+  Copied: 2128018184271655.jpg
+  Copied: 2128675044207347.png
+  Skip (exists): 2181844979009702.jpg
+  Copied: 2188479078352519.jpg
+  Copied: 2195369140971163.jpg
+  Skip (exists): 2203322526860968.jpg
+  Copied: 2211660252672332.jpg
+  Copied: 2229278977560541.jpg
+  Copied: 2238755563259412.jpg
+  Copied: 2250573082079968.mp4
+  Copied: 2253786571757315.jpg
+  Skip (exists): 2255670958176974.jpg
+  Skip (exists): 2257923211372993.jpg
+  Copied: 2277952886058267.mp4
+  Skip (exists): 2283829052120919.jpg
+  Copied: 2293332494452099.jpg
+  Copied: 2297175994053382.jpg
+  Skip (exists): 2301487150277492.jpg
+  Copied: 2304172753391042.mp4
+  Copied: 2305438629953923.png
+  Copied: 2309369089514226.jpg
+  Skip (exists): 2312890832482083.jpg
+  Skip (exists): 2319816758461606.jpg
+  Skip (exists): 2330542757398925.jpg
+  Skip (exists): 2333398790428715.jpg
+  Skip (exists): 2354245028365559.jpg
+  Copied: 2355368184899936.jpg
+  Skip (exists): 2368725840210742.jpg
+  Copied: 2386088495160128.jpg
+  Skip (exists): 2392647104487079.jpg
+  Copied: 2450710888656173.png
+  Copied: 24733997122945970.jpg
+  Skip (exists): 2473696083026408.jpg
+  Skip (exists): 24835790656117666.jpg
+  Skip (exists): 24838508485772199.jpg
+  Skip (exists): 24872041399089258.jpg
+  Skip (exists): 2493033157759639.jpg
+  Copied: 24967187959639460.jpg
+  Copied: 25008138572169774.jpg
+  Skip (exists): 25014388798213462.jpg
+  Skip (exists): 25017252747942015.jpg
+  Copied: 25025444223815750.mp4
+  Copied: 25042606922071426.png
+  Skip (exists): 25120210737633369.jpg
+  Skip (exists): 25142441475436772.jpg
+  Skip (exists): 25165415113107623.jpg
+  Copied: 25210941735259633.png
+  Copied: 25211303225189486.mp4
+  Skip (exists): 25226906636951991.jpg
+  Copied: 25231075459913663.png
+  Copied: 25239137659046398.mp4
+  Copied: 25271497159147464.jpg
+  Skip (exists): 25292547213765935.jpg
+  Skip (exists): 2536025516753976.jpg
+  Skip (exists): 25368168999469266.jpg
+  Skip (exists): 25368419696100467.png
+  Copied: 25436471075992319.mp4
+  Skip (exists): 2554297724952049.jpg
+  Skip (exists): 25737145075892515.jpg
+  Copied: 2587139214982560.mp4
+  Copied: 2592088244495332.jpg
+  Skip (exists): 2596389480710981.png
+  Skip (exists): 2598890770488849.jpg
+  Copied: 2607851609564513.jpg
+  Copied: 2621793614838333.mp4
+  Copied: 26262579933343040.jpg
+  Copied: 2633019597057353.mp4
+  Skip (exists): 2647239482278571.jpg
+  Copied: 2702725093393366.jpg
+  Copied: 2749342945414424.png
+  Copied: 2831085340423621.png
+  Copied: 2853724491498256.jpg
+  Copied: 2900479586813147.png
+  Skip (exists): 2912549332279488.jpg
+  Copied: 2948455578683227.mp4
+  Skip (exists): 2949096891944360.jpg
+  Skip (exists): 2951448765050906.jpg
+  Copied: 2969803476743154.mp4
+  Skip (exists): 2970853859773150.jpg
+  Copied: 2978254442378172.png
+  Skip (exists): 3007846859399193.jpg
+  Skip (exists): 3038137376387037.jpg
+  Copied: 3081194465395970.mp4
+  Copied: 3098568453657281.jpg
+  Skip (exists): 3183206795181245.jpg
+  Skip (exists): 32233336626313922.jpg
+  Skip (exists): 32357748143873418.jpg
+  Copied: 32453208467626823.jpg
+  Copied: 32458807290431040.mp4
+  Copied: 3300963206739501.mp4
+  Skip (exists): 3320713338095050.jpg
+  Skip (exists): 3348040595343582.png
+  Skip (exists): 3377052885777292.jpg
+  Copied: 3430254590459608.jpg
+  Skip (exists): 3507313236084705.jpg
+  Copied: 3702761473365468.mp4
+  Copied: 3720235908111159.jpg
+  Skip (exists): 3756312717996924.jpg
+  Copied: 3835292376770110.mp4
+  Copied: 3867121273586878.png
+  Copied: 3869560563337272.jpg
+  Skip (exists): 3872686519530867.jpg
+  Copied: 3899030093721928.jpg
+  Skip (exists): 3911255835838941.jpg
+  Copied: 3933119743645044.jpg
+  Copied: 3979490052363772.jpg
+  Copied: 3996454473831806.png
+  Copied: 4004727869778404.mp4
+  Skip (exists): 4039358782953811.jpg
+  Skip (exists): 4085149875074534.jpg
+  Copied: 4101357163447058.jpg
+  Copied: 4110150405876468.png
+  Skip (exists): 4120701218189977.jpg
+  Skip (exists): 4123846394598831.jpg
+  Copied: 4125049211142364.mp4
+  Skip (exists): 4130260663883719.png
+  Copied: 4134961540057851.png
+  Skip (exists): 4141504742662681.jpg
+  Skip (exists): 4166065973635662.jpg
+  Copied: 4166142243644229.jpg
+  Copied: 4185503551717198.jpg
+  Skip (exists): 4187703388155476.jpg
+  Copied: 4194205620852334.mp4
+  Skip (exists): 4203150886669520.png
+  Copied: 4203790216569094.png
+  Skip (exists): 4217380171809914.jpg
+  Copied: 4229590653945671.jpg
+  Skip (exists): 4246079585709582.jpg
+  Skip (exists): 4267311243414653.jpg
+  Copied: 4284096158581252.mp4
+  Copied: 4287763258173414.jpg
+  Skip (exists): 4313114735614343.jpg
+  Skip (exists): 4342234852679566.jpg
+  Skip (exists): 4345156432479633.jpg
+  Skip (exists): 4419099068376996.jpg
+  Copied: 5091611947730534.jpg
+  Skip (exists): 601831726323390.jpg
+  Skip (exists): 610473278822611.jpg
+  Skip (exists): 615410461661020.jpg
+  Skip (exists): 630840736688736.jpg
+  Copied: 632115866557240.mp4
+  Copied: 635093849687382.mp4
+  Copied: 636798676083942.jpg
+  Copied: 645813921829484.png
+  Skip (exists): 653760841020632.jpg
+  Copied: 659653833751443.jpg
+  Skip (exists): 675076032127913.jpg
+  Skip (exists): 675171522139236.jpg
+  Skip (exists): 677400171864395.jpg
+  Copied: 678267328459733.jpg
+  Skip (exists): 679776198299265.png
+  Skip (exists): 681342618381389.jpg
+  Copied: 682432021406367.jpg
+  Skip (exists): 684220197822332.jpg
+  Copied: 684909287718045.mp4
+  Copied: 685048121346075.mp4
+  Skip (exists): 685914277646195.jpg
+  Skip (exists): 686725784196867.png
+  Skip (exists): 688932440954013.jpg
+  Copied: 690491317452108.jpg
+  Copied: 692917063892180.png
+  Copied: 693422753458302.mp4
+  Copied: 697420430087961.mp4
+  Skip (exists): 698272619699915.jpg
+  Skip (exists): 698591306205847.jpg
+  Skip (exists): 700261259373804.jpg
+  Copied: 702502249568024.jpg
+  Copied: 706959262449589.jpg
+  Copied: 708059572343408.jpg
+  Copied: 708343088980216.jpg
+  Skip (exists): 708689788464970.jpg
+  Copied: 713040941840803.mp4
+  Copied: 715784354338877.png
+  Copied: 716184594320634.mp4
+  Copied: 716362240940311.jpg
+  Skip (exists): 718440154070714.jpg
+  Copied: 719374737852157.mp4
+  Skip (exists): 721185340814889.jpg
+  Skip (exists): 725459813913446.jpg
+  Copied: 725885326572389.png
+  Copied: 727534387032470.mp4
+  Skip (exists): 729113030215157.jpg
+  Skip (exists): 730633373382691.jpg
+  Copied: 731165922637529.png
+  Skip (exists): 733870039004300.jpg
+  Skip (exists): 741166044991579.jpg
+  Skip (exists): 753897827665283.jpg
+  Copied: 756637947435457.mp4
+  Skip (exists): 756658890764663.jpg
+  Skip (exists): 759488327146828.jpg
+  Skip (exists): 760035480423603.jpg
+  Skip (exists): 761508416943672.png
+  Skip (exists): 762337976861875.jpg
+  Copied: 764818936571891.jpg
+  Copied: 766906273043787.png
+  Skip (exists): 768063296261095.jpg
+  Skip (exists): 769438696126298.jpg
+  Copied: 770437409341481.jpg
+  Skip (exists): 778833355137426.jpg
+  Skip (exists): 779000885167980.jpg
+  Copied: 780305741709002.mp4
+  Skip (exists): 780618784944062.jpg
+  Skip (exists): 787245250963402.jpg
+  Copied: 795618389979314.png
+  Copied: 798823639621843.mp4
+  Copied: 801255666082999.mp4
+  Skip (exists): 802629345936739.jpg
+  Skip (exists): 803355949238611.png
+  Skip (exists): 803836662522613.jpg
+  Skip (exists): 804454202570230.jpg
+  Skip (exists): 805064702519336.png
+  Copied: 805305295817140.mp4
+  Skip (exists): 805379455595363.jpg
+  Skip (exists): 805678482341639.jpg
+  Skip (exists): 805935878934073.jpg
+  Skip (exists): 806180652405325.jpg
+  Skip (exists): 806998458838109.jpg
+  Skip (exists): 808042008724014.jpg
+  Skip (exists): 808149035346525.jpg
+  Copied: 808424495510307.mp4
+  Copied: 808999678572415.png
+  Copied: 809032098609551.mp4
+  Copied: 810391171806649.mp4
+  Copied: 810588405016346.png
+  Skip (exists): 810961258514938.jpg
+  Skip (exists): 810971291738540.jpg
+  Copied: 811102925140214.jpg
+  Skip (exists): 811679961738824.jpg
+  Skip (exists): 812922888042034.jpg
+  Copied: 813738041269103.mp4
+  Copied: 814501341563690.png
+  Copied: 815630207957046.jpg
+  Copied: 815749241073140.jpg
+  Skip (exists): 815890744685820.jpg
+  Skip (exists): 817129781084324.png
+  Skip (exists): 817488331050871.jpg
+  Skip (exists): 817777644494678.jpg
+  Skip (exists): 818119040823976.jpg
+  Copied: 818158517675167.jpg
+  Copied: 818632944129191.png
+  Copied: 818725844204411.jpg
+  Copied: 818879500759786.jpg
+  Skip (exists): 818991930756727.jpg
+  Copied: 819286577545219.jpg
+  Copied: 819390924339064.jpg
+  Copied: 819632694315078.png
+  Skip (exists): 820236894310354.jpg
+  Skip (exists): 820301187519659.jpg
+  Copied: 821674017517407.mp4
+  Copied: 821941924141731.jpg
+  Copied: 823436450402866.jpg
+  Copied: 823625633603016.png
+  Copied: 823909127029913.jpg
+  Copied: 823916907280003.jpg
+  Skip (exists): 823931873573438.png
+  Copied: 824159027135501.jpg
+  Skip (exists): 827759002989270.jpg
+  Copied: 827860683326453.jpg
+  Skip (exists): 828004733441731.png
+  Skip (exists): 828486723122519.png
+  Copied: 828549073054254.png
+  Skip (exists): 829773553097964.jpg
+  Copied: 830014119834380.jpg
+  Copied: 830419139834972.jpg
+  Copied: 830668126371907.mp4
+  Copied: 830860223145868.mp4
+  Skip (exists): 830998719635534.jpg
+  Skip (exists): 831232889293072.jpg
+  Copied: 831408419772573.jpg
+  Copied: 831919866109138.mp4
+  Skip (exists): 832186872736414.png
+  Copied: 832272282851839.jpg
+  Skip (exists): 832639442722264.jpg
+  Skip (exists): 832989042927119.jpg
+  Copied: 833171456103100.jpg
+  Skip (exists): 833241952643903.png
+  Copied: 833939796027801.png
+  Skip (exists): 834130492360839.jpg
+  Skip (exists): 834299189300564.jpg
+  Skip (exists): 834428522627931.jpg
+  Copied: 834494292558972.png
+  Copied: 834858945795867.png
+  Skip (exists): 835423662523836.jpg
+  Copied: 835542659208672.png
+  Skip (exists): 835739452675489.jpg
+  Copied: 835946802353371.jpg
+  Skip (exists): 837262698677552.jpg
+  Copied: 837353865703638.png
+  Skip (exists): 837831119003727.jpg
+  Copied: 838254842124328.mp4
+  Copied: 838698218771677.jpg
+  Copied: 838778245513968.jpg
+  Copied: 839044392370370.png
+  Skip (exists): 839424361907146.jpg
+  Copied: 840119748563507.jpg
+  Copied: 840256718653892.mp4
+  Skip (exists): 840519455013762.jpg
+  Copied: 840755542280059.mp4
+  Skip (exists): 841103888772950.jpg
+  Copied: 841245905291516.mp4
+  Copied: 841913848423241.mp4
+  Copied: 842188878561842.png
+  Copied: 842413808735733.jpg
+  Skip (exists): 842696864770984.jpg
+  Skip (exists): 843036041983488.jpg
+  Skip (exists): 843042538086293.jpg
+  Skip (exists): 843059398137618.jpg
+  Skip (exists): 843348731581004.jpg
+  Copied: 843616508073553.jpg
+  Copied: 843639211690113.mp4
+  Copied: 843759444681449.mp4
+  Skip (exists): 843874121698521.jpg
+  Skip (exists): 844007651355256.jpg
+  Skip (exists): 844216538121767.jpg
+  Skip (exists): 845073488064272.jpg
+  Skip (exists): 845345804648143.jpg
+  Copied: 846008111700370.jpg
+  Copied: 846267321676175.jpg
+  Copied: 846937158087846.png
+  Skip (exists): 847361977847798.jpg
+  Skip (exists): 847404198038742.jpg
+  Skip (exists): 847496878228521.jpg
+  Copied: 847843781164126.png
+  Skip (exists): 849031890841634.jpg
+  Copied: 849350434260420.jpg
+  Skip (exists): 849653954270475.jpg
+  Copied: 849787224712676.png
+  Copied: 849837430872513.mp4
+  Skip (exists): 850127660713212.jpg
+  Skip (exists): 850537560723877.jpg
+  Copied: 850578267470011.png
+  Skip (exists): 850731917721117.jpg
+  Copied: 850793100682917.jpg
+  Skip (exists): 851267844505771.png
+  Skip (exists): 851330774513499.jpg
+  Skip (exists): 851808364466367.jpg
+  Copied: 852302807305873.jpg
+  Skip (exists): 853057160561611.jpg
+  Copied: 853152497396549.jpg
+  Copied: 853938713740928.jpg
+  Copied: 854117926982606.jpg
+  Skip (exists): 854125217128085.jpg
+  Skip (exists): 854989667014896.jpg
+  Skip (exists): 855318170248251.jpg
+  Copied: 856377817254431.png
+  Skip (exists): 857582893336370.png
+  Skip (exists): 859226960376217.png
+  Skip (exists): 860182569880041.jpg
+  Skip (exists): 861033002928888.jpg
+  Copied: 861055186866201.jpg
+  Copied: 861130459939346.png
+  Skip (exists): 861240996254096.jpg
+  Skip (exists): 863230262795586.jpg
+  Skip (exists): 863520129689124.jpg
+  Copied: 864162982703132.mp4
+  Skip (exists): 864233239361990.png
+  Skip (exists): 864563959852074.jpg
+  Skip (exists): 864987506187482.jpg
+  Skip (exists): 865082122671988.jpg
+  Copied: 865469762855572.jpg
+  Skip (exists): 865619216034217.jpg
+  Skip (exists): 866448212611345.jpg
+  Copied: 867581022283095.mp4
+  Skip (exists): 867641775600778.jpg
+  Copied: 867764172309117.jpg
+  Skip (exists): 867935379257244.jpg
+  Copied: 868580729670552.mp4
+  Copied: 868975772137156.jpg
+  Skip (exists): 870765668953902.jpg
+  Skip (exists): 871981335184475.jpg
+  Skip (exists): 872578238773614.jpg
+  Copied: 872716645108814.png
+  Skip (exists): 873213062032982.jpg
+  Copied: 874063398290578.jpg
+  Skip (exists): 874224574933791.jpg
+  Copied: 874974411861037.png
+  Skip (exists): 875078688186492.png
+  Skip (exists): 875407888398844.jpg
+  Skip (exists): 877204271306472.jpg
+  Copied: 877494741371057.jpg
+  Copied: 877981638236519.jpg
+  Copied: 878863094802971.png
+  Copied: 880940668217542.jpg
+  Skip (exists): 885600137220100.jpg
+  Skip (exists): 886283643751546.jpg
+  Copied: 890193730211900.jpg
+  Skip (exists): 891527246931640.jpg
+  Copied: 895156002843212.jpg
+  Skip (exists): 898009892560564.jpg
+  Copied: 903972185916643.jpg
+  Copied: 905675748685965.png
+  Copied: 925380700648638.mp4
+  Skip (exists): 9407645709359513.jpg
+  Skip (exists): 970319979036089.jpg
+  Skip (exists): 992796679716577.jpg
+  Copied: 993221363008919.png
+
+============================================================
+Summary:
+  Files copied: 465
+  Files not found: 5830
+  Destination: cleaned_media
+============================================================

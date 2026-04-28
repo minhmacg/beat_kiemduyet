@@ -3,6 +3,7 @@
 build/
 medias/
 cleaned_medias/
+cleaned_media/
 .cache/
 inbox/
 done/

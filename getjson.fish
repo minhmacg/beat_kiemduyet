@@ -1,7 +1,14 @@
-argparse 'd=' -- $argv
+#!/usr/sbin/fish
+argparse 'd=' 'o=' -- $argv
 
 if not set -q _flag_d
-	echo "Usage: getjson -d <facebook_downloaded_folder>"
+	echo "Usage: getjson -d <facebook_downloaded_folder> -o outputfile"
+	exit
+end
+
+if not set -q _flag_o
+	echo "Usage: getjson -d <facebook_downloaded_folder> -o outputfile"
+	exit
 end
 
 set -l names 1gkdfbchuyencuahanoi \
@@ -9,10 +16,11 @@ set -l names 1gkdfbchuyencuahanoi \
   chotchanbeatnetwork \
   chotchanshowbeat1g \
   chottiktokhtbz \
-  finaltiktokbeatvn2025 \
+  finaltiktokbeatvn2026 \
   kdbeatnow \
   kdfbbeatvnfinal \
   kdfbcaothu \
+  kdfbnghemoi \
   kdfbsaigonnghenn \
   kdkienkhongngu \
   kdkienkhongngutrending \
@@ -26,6 +34,7 @@ set -l names 1gkdfbchuyencuahanoi \
   sanphamxkiemduyet
 
 rm json_src/*
+rm output/*
 for dir in (ls -1 $_flag_d)
 	set -l pagename (echo $dir | perl -pe "s/_\d+\$//")
 	if contains $pagename $names
@@ -40,3 +49,5 @@ for json in (ls json_src)
 	set -l pagename (echo $json | perl -pe "s/\.json\$//")
 	perl beatdata.pl json_src/$json > output/$pagename.tsv
 end
+
+cat output/*tsv > $_flag_o

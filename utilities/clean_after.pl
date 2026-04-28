@@ -3,6 +3,7 @@ use warnings;
 use utf8;
 use open qw(:std :utf8);
 use feature 'say';
+use Text::CSV;
 
 my @plc = (
   "HÀNH VI PHẠM TỘI VÀ BẠO LỰC", "Bạo lực và khích nộ", "Cá nhân và tổ chức nguy hiểm",
@@ -40,21 +41,39 @@ my @stt = ("Duyệt", "Sửa/ xóa bài - cơ bản", "Sửa/ xóa bài - nâng 
 my $file = shift or die "Usage: perl clean_after.pl <inputfile>\n";
 open my $in, "<:encoding(UTF-8)", $file or die "Can't open file: $!";
 
-while (<$in>) {
-  chomp;
-  $_ =~ s/\r//g;
-  my @fields = split /\t/;
+# Create CSV parser for TSV
+my $csv = Text::CSV->new({
+  sep_char => "\t",
+  binary => 1,
+  auto_diag => 1,
+  allow_loose_quotes => 1,
+  allow_loose_escapes => 1,
+}) or die "Cannot use CSV: " . Text::CSV->error_diag();
+
+# Create CSV writer for output
+my $csv_out = Text::CSV->new({
+  sep_char => "\t",
+  binary => 1,
+  auto_diag => 1,
+  eol => "\n",
+}) or die "Cannot use CSV: " . Text::CSV->error_diag();
+
+while (my $row = $csv->getline($in)) {
+  my @fields = @$row;
+  
+  # Pad to 11 fields if needed
   push @fields, "" while @fields < 11;
   next if @fields > 11;
 
   # Clean time (remove after first space)
-  $fields[0] =~ s/ .*$//;
+  $fields[0] =~ s/ .*$// if defined $fields[0];
 
   my $rstatus = defined $fields[8] ? $fields[8] : '';
   my $rplc    = defined $fields[10] ? $fields[10] : '';
+  
   # Status mapping
   if ($rstatus =~ /^\d+$/) {
-    $fields[8] = $stt[$rstatus] // "Duyệt";
+    $fields[8] = $stt[$rstatus - 1] // "Duyệt";
   } elsif ($rstatus eq '' || $rstatus eq 'L') {
     $fields[8] = "Duyệt";
   } else {
@@ -67,14 +86,15 @@ while (<$in>) {
     my @labels;
     for my $code (@codes) {
       if (defined $plc[$code]) {
-        push @labels, '""' . $plc[$code] . '""';
+        push @labels, "\"$plc[$code]\"";
       } else {
         warn "invalid plc index: $code\n";
       }
     }
-    $fields[10] = '"' . join(",", @labels) . '"';
+    $fields[10] = join(",", @labels);
   }
 
-  say join("\t", @fields);
+  $csv_out->print(\*STDOUT, \@fields);
 }
 
+close $in;
