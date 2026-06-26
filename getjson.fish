@@ -11,27 +11,7 @@ if not set -q _flag_o
 	exit
 end
 
-set -l names 1gkdfbchuyencuahanoi \
-  antoanthxsmacheckbaiquangcao \
-  chotchanbeatnetwork \
-  chotchanshowbeat1g \
-  chottiktokhtbz \
-  finaltiktokbeatvn2026 \
-  kdbeatnow \
-  kdfbbeatvnfinal \
-  kdfbcaothu \
-  kdfbnghemoi \
-  kdfbsaigonnghenn \
-  kdkienkhongngu \
-  kdkienkhongngutrending \
-  kdtiktokcchn \
-  kdtiktokshowbeat \
-  kdttbeat_thegame \
-  kiemduyetbeatviralworld \
-  kiemduyetinsidethebox \
-  kiemduyettthellovietnam \
-  kiemduyettthongheart \
-  sanphamxkiemduyet
+set -l names (cut -f1 -d',' pagename)
 
 rm json_src/*
 rm output/*

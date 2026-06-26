@@ -1,37 +1,23 @@
 use strict;
 use warnings;
 use utf8;
-binmode STDOUT, ':encoding(UTF-8)';
 use Encode qw(encode decode);
 use JSON;
 use POSIX 'strftime';
 
 if (scalar @ARGV != 1) {die "Usage: beatdata <jsonfile>"};
 
-my %pagename = (
-	'1gkdfbchuyencuahanoi' => "FB - Chuyện của Hà Nội",
-	antoanthxsmacheckbaiquangcao => " Quảng Cáo",
-	chotchanbeatnetwork => "FB - Beat Network",
-	chotchanshowbeat1g => "FB - SHOWBEAT",
-	chottiktokhtbz => "TT - HÀNH TINH BEATZ",
-	finaltiktokbeatvn2026 => "TT - BEATVN",
-	kdbeatnow => "FP - BEAT NOW",
-	kdfbbeatvnfinal => "FB - Beatvn",
-	kdfbcaothu => "FB - Cao Thủ",
-	kdfbnghemoi => "FB - Nghề Mới",
-	kdfbsaigonnghenn => "FB - Sài Gòn Nghenn",
-	kdkienkhongngu => "FB - Kiến Không Ngủ",
-	kdkienkhongngutrending => "FB - Kiến Không Ngủ Trending",
-	kdtiktokcchn => "TT - CCHN",
-	kdtiktokshowbeat => "TT - SHOWBEAT",
-	kdttbeat_thegame => "TT - BEAT THE GAME",
-	kiemduyetbeatviralworld => "TT - BEAT VIRAL WORLD",
-	kiemduyetinsidethebox => "FB - Inside The Box",
-	kiemduyettthellovietnam => "TT - HELLO VIETNAM",
-	kiemduyettthongheart => "TT - HÓNG TO THE HEART",
-	sanphamxkiemduyet => "Quảng Cáo",
-);
-
+my %pagename;
+{
+    open my $f, '<', 'pagename' or die "can't open pagename";
+    while (<$f>)
+    {
+        chomp;
+        my ($p, $page) = split ',', $_;
+        $pagename{$p} = $page;
+    };
+    close $f;
+}
 my %kdperpage = (
 	'1gkdfbchuyencuahanoi' => "Vũ",
 	antoanthxsmacheckbaiquangcao => "Dũng",
@@ -62,7 +48,8 @@ my $json = do {
     close $f;
     
 	# Fix facebook byte encoding
-    $json_text =~ s/\\u00([0-9a-f]{2})/chr(hex($1))/ge;
+    #$json_text =~ s/\\u00([0-9a-f]{2})/chr(hex($1))/ge;
+    $json_text =~ s/\\x5cu([0-9a-f]{4})/pack("C", hex($1) & 0xff)/ige;
     
     decode_json($json_text);
 };
