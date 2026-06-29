@@ -1,6 +1,7 @@
 use strict;
 use warnings;
 use utf8;
+binmode(STDOUT, ":encoding(UTF-8)");
 use Encode qw(encode decode);
 use JSON;
 use POSIX 'strftime';
@@ -9,7 +10,7 @@ if (scalar @ARGV != 1) {die "Usage: beatdata <jsonfile>"};
 
 my %pagename;
 {
-    open my $f, '<', 'pagename' or die "can't open pagename";
+    open my $f, '<:encoding(UTF-8)', 'pagename' or die "can't open pagename";
     while (<$f>)
     {
         chomp;
@@ -48,8 +49,8 @@ my $json = do {
     close $f;
     
 	# Fix facebook byte encoding
-    #$json_text =~ s/\\u00([0-9a-f]{2})/chr(hex($1))/ge;
-    $json_text =~ s/\\x5cu([0-9a-f]{4})/pack("C", hex($1) & 0xff)/ige;
+    $json_text =~ s/\\u00([0-9a-f]{2})/chr(hex($1))/ge;
+    #$json_text =~ s/\\x5cu([0-9a-f]{4})/pack("C", hex($1) & 0xff)/ige;
     
     decode_json($json_text);
 };
