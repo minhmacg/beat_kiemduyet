@@ -89,7 +89,6 @@ foreach my $m (@{$json->{messages}})
 			$m->{kdv} = $react->{actor};
 		};
 	};
-	next if (!$m->{kdv});
 	# If not already posting, start
 	if (!$current_btv_status->{posting})
 	{
